@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
+             x:Class="ToDo.Views.MainPageToDoMaster"
+             Title="Master" x:Name="AllToDoItemsMaster">
+
+    <ContentPage.Behaviors>
+        <b:EventToCommandBehavior EventName="Appearing"  Command="{Binding LoadGroupToDoItems}"/>
+    </ContentPage.Behaviors>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Button">
+                <Setter Property="HorizontalOptions" Value="Fill" />
+                <Setter Property="VerticalOptions" Value="FillAndExpand" />
+                <Setter Property="BorderColor" Value="White" />
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="TextColor" Value="Black" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="LightGray" Padding="5,30,5,5">
+            <Label Text="Master Page" ></Label>
+            <StackLayout>
+                <Entry Text="{Binding NewGroupToDoItem}" Placeholder="ToDo SubTitle" />
+                <Button Text="Save" Command="{Binding AddGroupToDoItem}" />
+            </StackLayout>
+
+            <ListView ItemsSource="{Binding GroupToDoItems}" BackgroundColor="White" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <!--<ViewCell.ContextActions>
+                                <MenuItem Command="{Binding DeleteGroupTodoItem}"  CommandParameter="{Binding .}"
+               Text="Delete" IsDestructive="True" />
+                            </ViewCell.ContextActions>-->
+                            <StackLayout >
+                                <Button  Text="{Binding GroupName}" Command="{Binding OpenDetailPage , Source={x:Reference Name=VM}}" CommandParameter="{Binding .}"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

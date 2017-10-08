@@ -1,5 +1,6 @@
 ﻿using Prism.Unity;
 using System.ComponentModel;
+using ToDo.ViewModels;
 using ToDo.Views;
 using Xamarin.Forms;
 
@@ -21,8 +22,16 @@ namespace ToDo
         protected override void RegisterTypes()
         {
             Container.RegisterTypeForNavigation<NavigationPage>("Nav");
-            Container.RegisterTypeForNavigation<MainPage>("Main");
-            
+            Container.RegisterTypeForNavigation<MainView, MainViewModel>("Main");
+            //Container.RegisterTypeForNavigation<MainPageToDoMaster , MasterViewModel>("Master");
+            //Container.RegisterTypeForNavigation<MainPageToDo>();
+            //Container.RegisterTypeForNavigation<MainPageToDoDetail>();
+
+
+
+
+
+
         }
     }
 }

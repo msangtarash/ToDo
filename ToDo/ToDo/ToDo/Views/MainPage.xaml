@@ -6,6 +6,6 @@
              x:Class="ToDo.Views.MainPage"
              Title="MainPage">
     <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
-        <Label Text="hi" />
+        <Label Text="Hi" />
     </StackLayout>
 </ContentPage>
