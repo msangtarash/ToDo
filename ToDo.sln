@@ -3,14 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDo.Droid", "ToDo\ToDo.Droid\ToDo.Droid.csproj", "{1ED0679A-F7D4-410C-B78B-2DD6A822B739}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDo.Droid", "src\ToDo.Droid\ToDo.Droid.csproj", "{1ED0679A-F7D4-410C-B78B-2DD6A822B739}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "ToDo", "ToDo\ToDo\ToDo.shproj", "{EBD65289-D9B4-4634-9267-C6178FB0AA25}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "ToDo", "src\ToDo\ToDo.shproj", "{EBD65289-D9B4-4634-9267-C6178FB0AA25}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		ToDo\ToDo\ToDo.projitems*{1ed0679a-f7d4-410c-b78b-2dd6a822b739}*SharedItemsImports = 4
-		ToDo\ToDo\ToDo.projitems*{ebd65289-d9b4-4634-9267-c6178fb0aa25}*SharedItemsImports = 13
+		src\ToDo\ToDo.projitems*{1ed0679a-f7d4-410c-b78b-2dd6a822b739}*SharedItemsImports = 4
+		src\ToDo\ToDo.projitems*{ebd65289-d9b4-4634-9267-c6178fb0aa25}*SharedItemsImports = 13
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Ad-Hoc|Any CPU = Ad-Hoc|Any CPU
