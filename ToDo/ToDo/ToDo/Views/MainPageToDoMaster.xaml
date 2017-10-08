@@ -2,10 +2,10 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
-             xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
              x:Class="ToDo.Views.MainPageToDoMaster"
+             xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
              Title="Master" x:Name="AllToDoItemsMaster">
-
+    
     <ContentPage.Behaviors>
         <b:EventToCommandBehavior EventName="Appearing"  Command="{Binding LoadGroupToDoItems}"/>
     </ContentPage.Behaviors>
@@ -22,7 +22,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout BackgroundColor="LightGray" Padding="5,30,5,5">
+        <StackLayout BackgroundColor="Red" Padding="5,30,5,5">
             <Label Text="Master Page" ></Label>
             <StackLayout>
                 <Entry Text="{Binding NewGroupToDoItem}" Placeholder="ToDo SubTitle" />
@@ -33,12 +33,12 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <!--<ViewCell.ContextActions>
+                            <ViewCell.ContextActions>
                                 <MenuItem Command="{Binding DeleteGroupTodoItem}"  CommandParameter="{Binding .}"
                Text="Delete" IsDestructive="True" />
-                            </ViewCell.ContextActions>-->
+                            </ViewCell.ContextActions>
                             <StackLayout >
-                                <Button  Text="{Binding GroupName}" Command="{Binding OpenDetailPage , Source={x:Reference Name=VM}}" CommandParameter="{Binding .}"/>
+                                <Button  Text="{Binding GroupName}" Command="{Binding OpenDetailPage , Source={x:Reference Name=AllToDoItemsMaster}}" CommandParameter="{Binding .}"/>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

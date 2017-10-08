@@ -17,6 +17,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Model\ToDoItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BooleanConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MasterViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\MainPageToDo.xaml.cs">
       <DependentUpon>MainPageToDo.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -47,19 +48,17 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\MainPageToDo.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\MainPageToDoDetail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\MainPageToDoMaster.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\MainPageToDoMaster.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\MainPageToDo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

@@ -22,10 +22,10 @@ namespace ToDo
         protected override void RegisterTypes()
         {
             Container.RegisterTypeForNavigation<NavigationPage>("Nav");
-            Container.RegisterTypeForNavigation<MainView, MainViewModel>("Main");
-            //Container.RegisterTypeForNavigation<MainPageToDoMaster , MasterViewModel>("Master");
-            //Container.RegisterTypeForNavigation<MainPageToDo>();
-            //Container.RegisterTypeForNavigation<MainPageToDoDetail>();
+            Container.RegisterTypeForNavigation<MainView, MainViewModel>();
+            Container.RegisterTypeForNavigation<MainPageToDoMaster, MasterViewModel>();
+            Container.RegisterTypeForNavigation<MainPageToDo>("Main");
+            Container.RegisterTypeForNavigation<MainPageToDoDetail>();
 
 
 

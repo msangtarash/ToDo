@@ -6,10 +6,11 @@ using ToDo.Model;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using Prism.Mvvm;
 
 namespace ToDo.ViewModels
 {
-    public class MasterViewModel : BitBindableObject
+    public class MasterViewModel : BindableBase
     {
         private readonly ToDoDbContext dbContext = new ToDoDbContext();
         public DelegateCommand LoadGroupToDoItems { get; set; }
@@ -94,17 +95,17 @@ namespace ToDo.ViewModels
 
             });
 
-            OpenDetailPage = new DelegateCommand<GroupToDoItem>((groupToDoItem) =>
-            {
-                PrismSampleShaired.Views.MainView mainView = new PrismSampleShaired.Views.MainView
-                {
-                    Title = groupToDoItem.GroupName
-                };
+            //OpenDetailPage = new DelegateCommand<GroupToDoItem>((groupToDoItem) =>
+            //{
+            //    ToDo.Views.MainView mainView = new ToDo.Views.MainView
+            //    {
+            //        Title = groupToDoItem.GroupName
+            //    };
 
-                mainView.FindByName<Label>("XXXX").Text = groupToDoItem.GroupName;
+            //    mainView.FindByName<Label>("XXXX").Text = groupToDoItem.GroupName;
 
-                ((MasterDetailPage)App.Current.MainPage).Detail = mainView;
-            });
+            //    ((MasterDetailPage)App.Current.MainPage).Detail = mainView;
+            //});
 
 
             DeleteGroupTodoItem = new DelegateCommand<GroupToDoItem>(async (grouptoDoItem) =>
