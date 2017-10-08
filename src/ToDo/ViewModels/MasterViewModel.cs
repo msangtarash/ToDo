@@ -1,27 +1,23 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Prism.Commands;
-using ToDo;
-using ToDo.DataAccess;
-using ToDo.Model;
+using Prism.Mvvm;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-using Xamarin.Forms;
-using Prism.Mvvm;
+using ToDo.DataAccess;
+using ToDo.Model;
 
 namespace ToDo.ViewModels
 {
     public class MasterViewModel : BindableBase
     {
-        private readonly ToDoDbContext dbContext = new ToDoDbContext();
+        private readonly ToDoDbContext dbContext;
+
         public DelegateCommand LoadGroupToDoItems { get; set; }
         public DelegateCommand AddGroupToDoItem { get; set; }
         public DelegateCommand<GroupToDoItem> DeleteGroupTodoItem { get; set; }
-
         public DelegateCommand<GroupToDoItem> OpenDetailPage { get; set; }
-        //new DelegateCommand OpenDetailPage => new DelegateCommand(Navigate);
 
         private ObservableCollection<GroupToDoItem> _GroupToDoItems;
-
         public ObservableCollection<GroupToDoItem> GroupToDoItems
         {
             get { return _GroupToDoItems; }
@@ -41,6 +37,7 @@ namespace ToDo.ViewModels
             get { return _NewGroupToDoItem; }
             set { SetProperty(ref _NewGroupToDoItem, value); }
         }
+
         private string _ChangingTitle;
         public string ChangingTitle
         {
@@ -50,6 +47,8 @@ namespace ToDo.ViewModels
 
         public MasterViewModel()
         {
+            dbContext = new ToDoDbContext();
+
             LoadGroupToDoItems = new DelegateCommand(async () =>
             {
                 try
@@ -61,7 +60,6 @@ namespace ToDo.ViewModels
                     await dbContext.Database.EnsureCreatedAsync();
 
                     GroupToDoItems = new ObservableCollection<GroupToDoItem>(await dbContext.GroupToDoItems.ToListAsync());
-
                 }
                 finally
                 {
@@ -92,23 +90,9 @@ namespace ToDo.ViewModels
                 {
                     IsBusy = false;
                 }
-
             });
 
-            //OpenDetailPage = new DelegateCommand<GroupToDoItem>((groupToDoItem) =>
-            //{
-            //    ToDo.Views.MainView mainView = new ToDo.Views.MainView
-            //    {
-            //        Title = groupToDoItem.GroupName
-            //    };
-
-            //    mainView.FindByName<Label>("XXXX").Text = groupToDoItem.GroupName;
-
-            //    ((MasterDetailPage)App.Current.MainPage).Detail = mainView;
-            //});
-
-
-            DeleteGroupTodoItem = new DelegateCommand<GroupToDoItem>(async (grouptoDoItem) =>
+            DeleteGroupTodoItem = new DelegateCommand<GroupToDoItem>(async grouptoDoItem =>
             {
                 try
                 {
@@ -123,7 +107,5 @@ namespace ToDo.ViewModels
                 }
             });
         }
-
     }
-
 }

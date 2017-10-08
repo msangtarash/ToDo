@@ -31,13 +31,5 @@ namespace ToDo.Model
             get { return _GroupId; }
             set { SetProperty(ref _GroupId, value); }
         }
-
-        //private GroupToDoItem _GroupName;
-        //public GroupToDoItem GroupName
-        //{
-        //    get { return _GroupName; }
-        //    set { Set(ref _GroupName, value); }
-        //}
-
     }
 }

@@ -1,19 +1,24 @@
-﻿using System;
-
-using Android.App;
+﻿using Android.App;
 using Android.Content.PM;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.OS;
-using Prism.Unity;
 using Microsoft.Practices.Unity;
+using Prism.Unity;
+using System;
+using Xamarin.Forms;
+using Xamarin.Forms.Platform.Android;
 
 namespace ToDo.Droid
 {
     [Activity(Label = "ToDo", Icon = "@drawable/icon", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
-    public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
+    public class MainActivity : FormsAppCompatActivity
     {
+        static MainActivity()
+        {
+#if DEBUG
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+#endif
+        }
+
         protected override void OnCreate(Bundle bundle)
         {
             TabLayoutResource = Resource.Layout.tabs;
@@ -21,16 +26,17 @@ namespace ToDo.Droid
 
             base.OnCreate(bundle);
 
-            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+            Forms.Init(this, bundle);
 
-            global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App(new AndroidInitializer()));
         }
 
-        private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+#if DEBUG
+        private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
-            
+
         }
+#endif
     }
 
     public class AndroidInitializer : IPlatformInitializer

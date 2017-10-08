@@ -4,12 +4,10 @@
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              x:Class="ToDo.Views.MainPageToDoMaster"
              xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
-             Title="Master" x:Name="AllToDoItemsMaster">
-    
+             Title="Master" x:Name="AllToDoItemsMaster">    
     <ContentPage.Behaviors>
-        <b:EventToCommandBehavior EventName="Appearing"  Command="{Binding LoadGroupToDoItems}"/>
+        <b:EventToCommandBehavior EventName="Appearing" Command="{Binding LoadGroupToDoItems}"/>
     </ContentPage.Behaviors>
-
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style TargetType="Button">
@@ -20,7 +18,7 @@
                 <Setter Property="TextColor" Value="Black" />
             </Style>
         </ResourceDictionary>
-    </ContentPage.Resources>
+    </ContentPage.Resources>    
     <ContentPage.Content>
         <StackLayout BackgroundColor="Red" Padding="5,30,5,5">
             <Label Text="Master Page" ></Label>
@@ -28,7 +26,6 @@
                 <Entry Text="{Binding NewGroupToDoItem}" Placeholder="ToDo SubTitle" />
                 <Button Text="Save" Command="{Binding AddGroupToDoItem}" />
             </StackLayout>
-
             <ListView ItemsSource="{Binding GroupToDoItems}" BackgroundColor="White" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -45,5 +42,5 @@
                 </ListView.ItemTemplate>
             </ListView>
         </StackLayout>
-    </ContentPage.Content>
+    </ContentPage.Content>    
 </ContentPage>

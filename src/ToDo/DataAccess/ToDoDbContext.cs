@@ -1,16 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ToDo.Model;
 using System;
 using System.IO;
+using ToDo.Model;
 
 namespace ToDo.DataAccess
 {
     public class ToDoDbContext : DbContext
     {
-        public ToDoDbContext()
-        {
-        }
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlite($"Filename={Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "toDoDb3.db")}");

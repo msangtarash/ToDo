@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Prism.Mvvm;
-using ToDo.DataAccess;
-using ToDo.Model;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using ToDo.DataAccess;
+using ToDo.Model;
 using Xamarin.Forms;
 
 namespace ToDo.ViewModels

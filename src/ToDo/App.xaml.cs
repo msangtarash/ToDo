@@ -1,16 +1,16 @@
 ﻿using Prism.Unity;
-using System.ComponentModel;
 using ToDo.ViewModels;
 using ToDo.Views;
 using Xamarin.Forms;
-
-
 
 namespace ToDo
 {
     public partial class App : PrismApplication
     {
-        public App(IPlatformInitializer initializer = null) : base(initializer) { }
+        public App(IPlatformInitializer initializer)
+            : base(initializer)
+        {
+        }
 
         protected override void OnInitialized()
         {
@@ -26,12 +26,6 @@ namespace ToDo
             Container.RegisterTypeForNavigation<MainPageToDoMaster, MasterViewModel>();
             Container.RegisterTypeForNavigation<MainPageToDo>("Main");
             Container.RegisterTypeForNavigation<MainPageToDoDetail>();
-
-
-
-
-
-
         }
     }
 }

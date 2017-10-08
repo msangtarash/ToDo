@@ -12,5 +12,4 @@
             <vm:BooleanConverter x:Key="BooleanConverter" />
         </ResourceDictionary>
     </prism:PrismApplication.Resources>
-
 </prism:PrismApplication>
