@@ -1,6 +1,9 @@
 ﻿using Prism.Unity;
+using System.ComponentModel;
 using ToDo.Views;
 using Xamarin.Forms;
+
+
 
 namespace ToDo
 {
@@ -12,13 +15,14 @@ namespace ToDo
         {
             InitializeComponent();
 
-            NavigationService.NavigateAsync("NavigationPage/MainPage?title=Hello%20from%20Xamarin.Forms");
+            NavigationService.NavigateAsync("Nav/Main?title=Hello%20from%20Xamarin.Forms");
         }
 
         protected override void RegisterTypes()
         {
-            Container.RegisterTypeForNavigation<NavigationPage>();
-            Container.RegisterTypeForNavigation<MainPage>();
+            Container.RegisterTypeForNavigation<NavigationPage>("Nav");
+            Container.RegisterTypeForNavigation<MainPage>("Main");
+            
         }
     }
 }
