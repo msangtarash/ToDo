@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              x:Class="ToDo.Views.MainPageToDoMaster"
              xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
              Title="Master" x:Name="AllToDoItemsMaster">    
@@ -30,12 +29,9 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <ViewCell.ContextActions>
-                                <MenuItem Command="{Binding DeleteGroupTodoItem}"  CommandParameter="{Binding .}"
-               Text="Delete" IsDestructive="True" />
-                            </ViewCell.ContextActions>
                             <StackLayout >
-                                <Button  Text="{Binding GroupName}" Command="{Binding OpenDetailPage , Source={x:Reference Name=AllToDoItemsMaster}}" CommandParameter="{Binding .}"/>
+                                <Button  Text="{Binding GroupName}" Command="{Binding NavigateCommand , Source={x:Reference Name=AllToDoItemsMaster}}" CommandParameter="{Binding .}"/>
+                                <Button  Text="{Binding GroupName}" />
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

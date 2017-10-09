@@ -1,4 +1,5 @@
 ﻿using Prism.Mvvm;
+using System.Collections.ObjectModel;
 
 namespace ToDo.Model
 {
@@ -16,6 +17,14 @@ namespace ToDo.Model
         {
             get { return _GroupName; }
             set { SetProperty(ref _GroupName, value); }
+        }
+
+        private ObservableCollection<ToDoItem> _ToDoItems;
+
+        public ObservableCollection<ToDoItem> ToDoItems
+        {
+            get { return _ToDoItems; }
+            set { SetProperty(ref _ToDoItems, value); }
         }
     }
 }

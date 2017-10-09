@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using ToDo.ViewModels;
+using Xamarin.Forms;
 
 namespace ToDo.Views
 {
@@ -7,6 +8,10 @@ namespace ToDo.Views
         public MainPageToDo()
         {
             InitializeComponent();
+
+            Master = new MainPageToDoMaster { BindingContext = new MasterViewModel() };
+
+            Detail = new NavigationPage(new MainPageToDoDetail { BindingContext = new MainViewModel() });
         }
     }
 }

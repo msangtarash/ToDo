@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using ToDo.DataAccess;
 using ToDo.Model;
+using Xamarin.Forms;
 
 namespace ToDo.ViewModels
 {
@@ -13,7 +14,9 @@ namespace ToDo.ViewModels
         private readonly ToDoDbContext dbContext;
 
         public DelegateCommand LoadGroupToDoItems { get; set; }
+
         public DelegateCommand AddGroupToDoItem { get; set; }
+         
         public DelegateCommand<GroupToDoItem> DeleteGroupTodoItem { get; set; }
         public DelegateCommand<GroupToDoItem> OpenDetailPage { get; set; }
 
@@ -28,14 +31,23 @@ namespace ToDo.ViewModels
         public bool IsBusy
         {
             get { return _IsBusy; }
-            set { SetProperty(ref _IsBusy, value); }
+            set
+            {
+                SetProperty(ref _IsBusy, value);
+                //if (SetProperty(ref _IsBusy, value))
+                //    AddGroupToDoItem.ChangeCanExecute();
+            }
         }
 
         private string _NewGroupToDoItem;
         public string NewGroupToDoItem
         {
             get { return _NewGroupToDoItem; }
-            set { SetProperty(ref _NewGroupToDoItem, value); }
+            set
+            {
+                SetProperty(ref _NewGroupToDoItem, value);
+                //    AddGroupToDoItem.ChangeCanExecute();
+            }
         }
 
         private string _ChangingTitle;
@@ -67,6 +79,7 @@ namespace ToDo.ViewModels
                 }
             });
 
+
             AddGroupToDoItem = new DelegateCommand(async () =>
             {
                 try
@@ -91,6 +104,8 @@ namespace ToDo.ViewModels
                     IsBusy = false;
                 }
             });
+
+
 
             DeleteGroupTodoItem = new DelegateCommand<GroupToDoItem>(async grouptoDoItem =>
             {

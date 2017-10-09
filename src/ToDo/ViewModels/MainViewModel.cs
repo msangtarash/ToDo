@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Prism.Commands;
 using Prism.Mvvm;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -13,13 +14,13 @@ namespace ToDo.ViewModels
     {
         private readonly ToDoDbContext dbContext;
 
-        public Command<bool> LoadToDoItems { get; set; }
+        public DelegateCommand<bool> LoadToDoItems { get; set; }
 
-        public Command<ToDoItem> ToggleToDoItemIsFinished { get; set; }
+        public DelegateCommand<ToDoItem> ToggleToDoItemIsFinished { get; set; }
 
         public Command AddToDoItem { get; set; }
 
-        public Command<ToDoItem> DeleteTodoItem { get; set; }
+        public DelegateCommand<ToDoItem> DeleteTodoItem { get; set; }
 
         private ObservableCollection<ToDoItem> _ToDoItems;
 
@@ -30,7 +31,6 @@ namespace ToDo.ViewModels
         }
 
         private bool _IsBusy;
-
         public bool IsBusy
         {
             get { return _IsBusy; }
@@ -39,15 +39,14 @@ namespace ToDo.ViewModels
                 if (SetProperty(ref _IsBusy, value))
                     AddToDoItem.ChangeCanExecute();
             }
-        }
+            }
 
         private string _NewToDoText;
 
         public string NewToDoText
         {
             get { return _NewToDoText; }
-            set
-            {
+            set {
                 if (SetProperty(ref _NewToDoText, value))
                     AddToDoItem.ChangeCanExecute();
             }
@@ -67,7 +66,7 @@ namespace ToDo.ViewModels
         {
             dbContext = new ToDoDbContext();
 
-            LoadToDoItems = new Command<bool>(async (loadAll) =>
+            LoadToDoItems = new DelegateCommand<bool>(async (loadAll) =>
             {
                 try
                 {
@@ -87,7 +86,7 @@ namespace ToDo.ViewModels
                 }
             });
 
-            ToggleToDoItemIsFinished = new Command<ToDoItem>(async (toDoItem) =>
+            ToggleToDoItemIsFinished = new DelegateCommand<ToDoItem>(async (toDoItem) =>
             {
                 if (toDoItem == null)
                     return;
@@ -132,7 +131,7 @@ namespace ToDo.ViewModels
                 }
             }, () => !IsBusy && !string.IsNullOrEmpty(NewToDoText));
 
-            DeleteTodoItem = new Command<ToDoItem>(async (toDoItem) =>
+            DeleteTodoItem = new DelegateCommand<ToDoItem>(async (toDoItem) =>
             {
                 try
                 {
