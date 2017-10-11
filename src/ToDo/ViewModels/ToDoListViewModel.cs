@@ -9,9 +9,11 @@ using ToDo.Model;
 
 namespace ToDo.ViewModels
 {
-    public class ToDoListViewModel : BindableBase, IDestructible
+    public class ToDoListViewModel : BindableBase, IDestructible, INavigatedAware
     {
         private readonly ToDoDbContext _dbContext;
+
+        private int _toDoGroupId;
 
         public virtual DelegateCommand<bool?> LoadToDoItems { get; set; }
 
@@ -46,6 +48,8 @@ namespace ToDo.ViewModels
 
         private IQueryable<ToDoItem> GetToDoItemsQuery(IQueryable<ToDoItem> toDoItemsBaseQuery, bool loadAll)
         {
+            toDoItemsBaseQuery = toDoItemsBaseQuery.Where(todo => todo.GroupId == _toDoGroupId);
+
             if (loadAll == false)
                 toDoItemsBaseQuery = toDoItemsBaseQuery.Where(toDo => toDo.IsFinished == false);
             else
@@ -59,6 +63,19 @@ namespace ToDo.ViewModels
             _dbContext.Dispose();
         }
 
+
+        public virtual void OnNavigatedTo(NavigationParameters navigationParams)
+        {
+            _toDoGroupId = navigationParams.GetValue<int>("toDoGroupId");
+
+            LoadToDoItems.Execute(false);
+        }
+
+        public virtual void OnNavigatedFrom(NavigationParameters parameters)
+        {
+
+        }
+
         public ToDoListViewModel()
         {
             _dbContext = new ToDoDbContext();
@@ -68,8 +85,6 @@ namespace ToDo.ViewModels
                 try
                 {
                     IsBusy = true;
-
-                    //await Task.Delay(1000);
 
                     await _dbContext.Database.EnsureCreatedAsync();
 
@@ -94,8 +109,6 @@ namespace ToDo.ViewModels
                 {
                     IsBusy = true;
 
-                    //await Task.Delay(1000);
-
                     toDoItem.IsFinished = !toDoItem.IsFinished;
 
                     await _dbContext.SaveChangesAsync();
@@ -114,9 +127,7 @@ namespace ToDo.ViewModels
                 {
                     IsBusy = true;
 
-                    //await Task.Delay(1000);
-
-                    ToDoItem toDoItem = new ToDoItem { IsFinished = false, Text = NewToDoText };
+                    ToDoItem toDoItem = new ToDoItem { IsFinished = false, Text = NewToDoText , GroupId = _toDoGroupId };
 
                     await _dbContext.ToDoItems.AddAsync(toDoItem);
 

@@ -4,9 +4,6 @@
              xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
              x:Class="ToDo.Views.ToDoListView"
              x:Name="ToDoListView" Title="To do list">
-    <ContentPage.Behaviors>
-        <b:EventToCommandBehavior EventName="Appearing"  Command="{Binding LoadToDoItems}" CommandParameter="{StaticResource False}"/>
-    </ContentPage.Behaviors>
     <StackLayout Padding="15">
         <StackLayout Orientation="Horizontal">
             <Entry Placeholder="New to do item text..." Text="{Binding NewToDoText}" HorizontalOptions="FillAndExpand" />

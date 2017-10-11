@@ -53,8 +53,6 @@ namespace ToDo.ViewModels
                 {
                     IsBusy = true;
 
-                    await Task.Delay(1000);
-
                     await dbContext.Database.EnsureCreatedAsync();
 
                     await dbContext.ToDoGroups.LoadAsync();
@@ -74,9 +72,7 @@ namespace ToDo.ViewModels
                 {
                     IsBusy = true;
 
-                    await Task.Delay(1000);
-
-                    ToDoGroup toDoGroup = new ToDoGroup { Name = NewToDoGroupName };
+                    ToDoGroup toDoGroup = new ToDoGroup { Name = NewToDoGroupName  };
 
                     await dbContext.ToDoGroups.AddAsync(toDoGroup);
 
