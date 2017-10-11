@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ToDo.Views.ToDoGroupsView"
+             xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
+             Title="To do groups" x:Name="ToDoGroupsView">
+    <ContentPage.Behaviors>
+        <b:EventToCommandBehavior EventName="Appearing" Command="{Binding LoadToDoGroups}"/>
+    </ContentPage.Behaviors>
+    <ContentPage.Content>
+        <StackLayout Padding="5,30,5,5">
+            <StackLayout>
+                <Entry Text="{Binding NewToDoGroupName}" Placeholder="New to do group name" />
+                <Button Text="Save" Command="{Binding AddToDoGroup}" />
+            </StackLayout>
+            <ListView ItemsSource="{Binding ToDoGroups}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                                <Button Text="{Binding Name}" Command="{Binding BindingContext.OpenToDoItems, Source={x:Reference Name=ToDoGroupsView}}" CommandParameter="{Binding .}"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

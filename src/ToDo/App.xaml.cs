@@ -1,7 +1,11 @@
-﻿using Prism.Unity;
+﻿using Prism.Autofac;
+using Prism.Autofac.Forms;
 using ToDo.ViewModels;
 using ToDo.Views;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+
+[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 
 namespace ToDo
 {
@@ -16,16 +20,15 @@ namespace ToDo
         {
             InitializeComponent();
 
-            NavigationService.NavigateAsync("Nav/Main?title=Hello%20from%20Xamarin.Forms");
+            NavigationService.NavigateAsync("Nav/ToDoGroups");
         }
-
+        
         protected override void RegisterTypes()
         {
             Container.RegisterTypeForNavigation<NavigationPage>("Nav");
-            Container.RegisterTypeForNavigation<MainView, MainViewModel>();
-            Container.RegisterTypeForNavigation<MainPageToDoMaster, MasterViewModel>();
-            Container.RegisterTypeForNavigation<MainPageToDo>("Main");
-            Container.RegisterTypeForNavigation<MainPageToDoDetail>();
+            Container.RegisterTypeForNavigation<ToDoListView, ToDoListViewModel>("ToDoList");
+            Container.RegisterTypeForNavigation<ToDoGroupsView, ToDoGroupsViewModel>("ToDoGroups");
+
         }
     }
 }
