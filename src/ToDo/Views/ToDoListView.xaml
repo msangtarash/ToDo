@@ -14,11 +14,12 @@
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout Orientation="Horizontal">
-                            <Switch IsToggled="{Binding IsFinished}">
-                                <Switch.GestureRecognizers>
+                            <Switch IsToggled="{Binding IsFinished, Mode=OneWay}">
+                                <!--<Switch.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding BindingContext.ToggleToDoItemIsFinished, Source={x:Reference Name=ToDoListView}}" CommandParameter="{Binding .}" />
-                                </Switch.GestureRecognizers>
+                                </Switch.GestureRecognizers>-->
                             </Switch>
+                            <Button Text="Toggle to do!" Command="{Binding BindingContext.ToggleToDoItemIsFinished, Source={x:Reference Name=ToDoListView}}" CommandParameter="{Binding .}" />
                             <Label Text="{Binding Text}" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand" />
                             <Button Text="Delete" HorizontalOptions="End" TextColor="Red" Command="{Binding BindingContext.DeleteTodoItem, Source={x:Reference Name=ToDoListView}}" CommandParameter="{Binding .}" />
                         </StackLayout>
@@ -28,10 +29,10 @@
         </ListView>
         <StackLayout Orientation="Horizontal">
             <Label Text="Load all?" VerticalTextAlignment="Center" />
-            <Switch x:Name="ShowAllSwitch">
-                <Switch.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding LoadToDoItems}" CommandParameter="{Binding IsToggled, Source={x:Reference Name=ShowAllSwitch}, Converter={StaticResource BooleanConverter}}" />
-                </Switch.GestureRecognizers>
+            <Switch x:Name="ShowAllSwitch" >
+                <Switch.Behaviors>
+                    <b:EventToCommandBehavior EventName="Toggled" Command="{Binding LoadToDoItems}" CommandParameter="{Binding IsToggled, Source={x:Reference Name=ShowAllSwitch}, Converter={StaticResource BooleanConverter}}" />
+                </Switch.Behaviors>
             </Switch>
         </StackLayout>
     </StackLayout>

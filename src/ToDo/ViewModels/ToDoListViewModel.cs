@@ -102,9 +102,6 @@ namespace ToDo.ViewModels
 
             ToggleToDoItemIsFinished = new DelegateCommand<ToDoItem>(async (toDoItem) =>
             {
-                if (toDoItem == null)
-                    return;
-
                 try
                 {
                     IsBusy = true;
@@ -113,10 +110,16 @@ namespace ToDo.ViewModels
 
                     await _dbContext.SaveChangesAsync();
                 }
+                catch
+                {
+                    await _dbContext.Entry(toDoItem).ReloadAsync();
+                    throw;
+                }
                 finally
                 {
                     IsBusy = false;
                 }
+
             }, (toDoItem) => !IsBusy);
 
             ToggleToDoItemIsFinished.ObservesProperty(() => IsBusy);
@@ -127,7 +130,7 @@ namespace ToDo.ViewModels
                 {
                     IsBusy = true;
 
-                    ToDoItem toDoItem = new ToDoItem { IsFinished = false, Text = NewToDoText , GroupId = _toDoGroupId };
+                    ToDoItem toDoItem = new ToDoItem { IsFinished = false, Text = NewToDoText, GroupId = _toDoGroupId };
 
                     await _dbContext.ToDoItems.AddAsync(toDoItem);
 

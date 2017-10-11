@@ -17,8 +17,10 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout>
-                                <Button Text="{Binding Name}" Command="{Binding BindingContext.OpenToDoItems, Source={x:Reference Name=ToDoGroupsView}}" CommandParameter="{Binding .}"/>
+                            <StackLayout Orientation="Horizontal">
+                                <Button Text="{Binding Name}" HorizontalOptions="FillAndExpand" Command="{Binding BindingContext.OpenToDoItems, Source={x:Reference Name=ToDoGroupsView}}" CommandParameter="{Binding .}"/>
+                                <Button Text="Delete" TextColor="Red" HorizontalOptions="End" Command="{Binding BindingContext.DeleteToDoGroup, Source={x:Reference Name=ToDoGroupsView}}" CommandParameter="{Binding .}"/>
+                                
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
