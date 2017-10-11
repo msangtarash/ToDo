@@ -2,9 +2,9 @@
 
 namespace ToDo.Views
 {
-    public partial class MainView : ContentPage
+    public partial class ToDoGroupsView : ContentPage
     {
-        public MainView()
+        public ToDoGroupsView()
         {
             InitializeComponent();
         }
