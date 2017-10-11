@@ -3,25 +3,25 @@ using System.Collections.ObjectModel;
 
 namespace ToDo.Model
 {
-    public class GroupToDoItem : BindableBase
+    public class ToDoGroup : BindableBase
     {
         private int _Id;
-        public int Id
+        public virtual int Id
         {
             get { return _Id; }
             set { SetProperty(ref _Id, value); }
         }
 
-        private string _GroupName;
-        public string GroupName
+        private string _Name;
+        public virtual string Name
         {
-            get { return _GroupName; }
-            set { SetProperty(ref _GroupName, value); }
+            get { return _Name; }
+            set { SetProperty(ref _Name, value); }
         }
 
         private ObservableCollection<ToDoItem> _ToDoItems;
 
-        public ObservableCollection<ToDoItem> ToDoItems
+        public virtual ObservableCollection<ToDoItem> ToDoItems
         {
             get { return _ToDoItems; }
             set { SetProperty(ref _ToDoItems, value); }
