@@ -46,6 +46,13 @@ namespace ToDo.ViewModels
             set { SetProperty(ref _NewToDoText, value); }
         }
 
+        private string _GroupName;
+        public virtual string GroupName
+        {
+            get { return _GroupName; }
+            set { SetProperty(ref _GroupName, value); }
+        }
+
         private IQueryable<ToDoItem> GetToDoItemsQuery(IQueryable<ToDoItem> toDoItemsBaseQuery, bool loadAll)
         {
             toDoItemsBaseQuery = toDoItemsBaseQuery.Where(todo => todo.GroupId == _toDoGroupId);
@@ -63,12 +70,13 @@ namespace ToDo.ViewModels
             _dbContext.Dispose();
         }
 
-
-        public virtual void OnNavigatedTo(NavigationParameters navigationParams)
+        public virtual async void OnNavigatedTo(NavigationParameters navigationParams)
         {
             _toDoGroupId = navigationParams.GetValue<int>("toDoGroupId");
 
             LoadToDoItems.Execute(false);
+            
+            GroupName = (await _dbContext.ToDoGroups.FindAsync(_toDoGroupId))?.Name;
         }
 
         public virtual void OnNavigatedFrom(NavigationParameters parameters)

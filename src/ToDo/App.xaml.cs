@@ -28,7 +28,6 @@ namespace ToDo
             Container.RegisterTypeForNavigation<NavigationPage>("Nav");
             Container.RegisterTypeForNavigation<ToDoListView, ToDoListViewModel>("ToDoList");
             Container.RegisterTypeForNavigation<ToDoGroupsView, ToDoGroupsViewModel>("ToDoGroups");
-
         }
     }
 }
