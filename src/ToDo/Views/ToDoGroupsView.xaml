@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ToDo.Views.ToDoGroupsView"
              xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
+             xmlns:views="clr-namespace:ToDo.Views"
              Title="To do groups" x:Name="ToDoGroupsView">
     <ContentPage.Behaviors>
         <b:EventToCommandBehavior EventName="Appearing" Command="{Binding LoadToDoGroups}"/>
@@ -10,8 +11,12 @@
     <ContentPage.Content>
         <StackLayout Padding="5,30,5,5">
             <StackLayout>
-                <Entry Text="{Binding NewToDoGroupName}" Placeholder="New to do group name" />
-                <Button Text="Save" Command="{Binding AddToDoGroup}" />
+                <Entry Text="{Binding NewToDoGroupName}" views:EntryManager.LessUnderLineEntry="True" Placeholder="New to do group name" BackgroundColor="#51adf6">
+                    <!--<Entry.Behaviors>
+                        <views:MagicText />
+                    </Entry.Behaviors>-->
+                </Entry>
+                <Button Text="Save" Command="{Binding AddToDoGroup}" HorizontalOptions="Fill" />
             </StackLayout>
             <ListView ItemsSource="{Binding ToDoGroups}">
                 <ListView.ItemTemplate>
@@ -20,7 +25,6 @@
                             <StackLayout Orientation="Horizontal">
                                 <Button Text="{Binding Name}" HorizontalOptions="FillAndExpand" Command="{Binding BindingContext.OpenToDoItems, Source={x:Reference Name=ToDoGroupsView}}" CommandParameter="{Binding .}"/>
                                 <Button Text="Delete" TextColor="Red" HorizontalOptions="End" Command="{Binding BindingContext.DeleteToDoGroup, Source={x:Reference Name=ToDoGroupsView}}" CommandParameter="{Binding .}"/>
-                                
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
