@@ -1,35 +1,45 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ToDo.Views.ToDoGroupsView"
-             xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
-             xmlns:views="clr-namespace:ToDo.Views"
-             Title="To do groups" x:Name="ToDoGroupsView">
-    <ContentPage.Behaviors>
-        <b:EventToCommandBehavior EventName="Appearing" Command="{Binding LoadToDoGroups}"/>
-    </ContentPage.Behaviors>
-    <ContentPage.Content>
-        <StackLayout Padding="5,30,5,5">
-            <StackLayout>
-                <Entry Text="{Binding NewToDoGroupName}" views:EntryManager.LessUnderLineEntry="True" Placeholder="New to do group name" BackgroundColor="#51adf6">
-                    <!--<Entry.Behaviors>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  x:Class="ToDo.Views.ToDoGroupsView"
+                  xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
+                  xmlns:views="clr-namespace:ToDo.Views"
+                  Title="To do groups" x:Name="ToDoGroupsView">
+    <MasterDetailPage.Master >
+        <ContentPage Title="MyMaster">
+        <ContentPage.Behaviors>
+            <b:EventToCommandBehavior EventName="Appearing" Command="{Binding LoadToDoGroups}"/>
+        </ContentPage.Behaviors>
+        <ContentPage.Content>
+            <StackLayout Padding="5,30,5,5">
+                <StackLayout>
+                    <Entry Text="{Binding NewToDoGroupName}"  Placeholder="New to do group name" BackgroundColor="#51adf6">
+                        <!--<Entry.Behaviors>
                         <views:MagicText />
                     </Entry.Behaviors>-->
-                </Entry>
-                <Button Text="Save" Command="{Binding AddToDoGroup}" HorizontalOptions="Fill" />
+                    </Entry>
+                    <Button Text="Save" Command="{Binding AddToDoGroup}" HorizontalOptions="Fill" />
+                </StackLayout>
+                <ListView ItemsSource="{Binding ToDoGroups}">
+                    <ListView.Behaviors>
+                        <b:EventToCommandBehavior EventName="ItemSelected" EventArgsParameterPath="SelectedItem" Command="{Binding OpenToDoItems}" />
+                    </ListView.Behaviors>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <ViewCell.ContextActions>
+                                    <MenuItem Command="{Binding BindingContext.DeleteToDoGroup, Source={x:Reference Name=ToDoGroupsView}}" CommandParameter="{Binding .}"
+               Text="Delete" ></MenuItem>
+                                </ViewCell.ContextActions>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding Name}" HorizontalOptions="FillAndExpand" />
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
             </StackLayout>
-            <ListView ItemsSource="{Binding ToDoGroups}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout Orientation="Horizontal">
-                                <Button Text="{Binding Name}" HorizontalOptions="FillAndExpand" Command="{Binding BindingContext.OpenToDoItems, Source={x:Reference Name=ToDoGroupsView}}" CommandParameter="{Binding .}"/>
-                                <Button Text="Delete" TextColor="Red" HorizontalOptions="End" Command="{Binding BindingContext.DeleteToDoGroup, Source={x:Reference Name=ToDoGroupsView}}" CommandParameter="{Binding .}"/>
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </StackLayout>
-    </ContentPage.Content>
-</ContentPage>
+        </ContentPage.Content>
+        </ContentPage>
+    </MasterDetailPage.Master>
+</MasterDetailPage>

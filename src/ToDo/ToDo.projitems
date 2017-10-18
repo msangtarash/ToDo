@@ -19,11 +19,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\DictionaryExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ToDoGroupsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ToDoListViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\Samples.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\ToDoGroupsView.xaml.cs">
       <DependentUpon>ToDoGroupsView.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\ToDoButtonRenderer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\ToDoEntryRenderer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\ToDoListView.xaml.cs">
       <DependentUpon>ToDoListView.xaml</DependentUpon>
       <SubType>Code</SubType>

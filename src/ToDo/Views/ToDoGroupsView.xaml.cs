@@ -2,7 +2,7 @@
 
 namespace ToDo.Views
 {
-    public partial class ToDoGroupsView : ContentPage
+    public partial class ToDoGroupsView : MasterDetailPage
     {
         public ToDoGroupsView()
         {
