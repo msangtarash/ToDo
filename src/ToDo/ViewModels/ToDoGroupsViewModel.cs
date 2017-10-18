@@ -4,7 +4,6 @@ using Prism.Mvvm;
 using Prism.Navigation;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Threading.Tasks;
 using ToDo.DataAccess;
 using ToDo.Model;
 
@@ -72,7 +71,7 @@ namespace ToDo.ViewModels
                 {
                     IsBusy = true;
 
-                    ToDoGroup toDoGroup = new ToDoGroup { Name = NewToDoGroupName  };
+                    ToDoGroup toDoGroup = new ToDoGroup { Name = NewToDoGroupName };
 
                     await dbContext.ToDoGroups.AddAsync(toDoGroup);
 
@@ -106,7 +105,7 @@ namespace ToDo.ViewModels
                 }
             });
 
-            OpenToDoItems = new DelegateCommand<ToDoGroup>(async toDoGroup =>
+            OpenToDoItems = new DelegateCommand<ToDoGroup>(async (toDoGroup) =>
             {
                 await navigationService.NavigateAsync("ToDoList", new Dictionary<string, object>
                 {

@@ -9,7 +9,7 @@ namespace ToDo.DataAccess
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite($"Filename={Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "toDoDb-V1.db")}");
+            optionsBuilder.UseSqlite($"Filename={Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "toDoDb-V2.db")}");
 
             base.OnConfiguring(optionsBuilder);
         }

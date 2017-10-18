@@ -44,7 +44,7 @@ namespace ToDo.Views
 
             if (Control != null)
             {
-                if (EntryManager.GetLessUnderLineEntry(e.NewElement))
+                //if (EntryManager.GetLessUnderLineEntry(e.NewElement))
                     Control.Background = null;
             }
         }
