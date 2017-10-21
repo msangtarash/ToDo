@@ -8,7 +8,7 @@ namespace System.Collections.Generic
         {
             NavigationParameters result = new NavigationParameters();
 
-            foreach (var param in parameters)
+            foreach (KeyValuePair<string, object> param in parameters)
             {
                 result.Add(param.Key, param.Value);
             }

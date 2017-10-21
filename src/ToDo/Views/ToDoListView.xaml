@@ -7,7 +7,7 @@
              x:Name="ToDoListView" Title="{Binding GroupName}">
     <StackLayout Padding="15">
         <StackLayout Orientation="Horizontal">
-            <Entry views:EntryManager.LessUnderLineEntry="True" Placeholder="New to do item text..." Text="{Binding NewToDoText}" HorizontalOptions="FillAndExpand" />
+            <Entry Placeholder="New to do item text..." Text="{Binding NewToDoText}" HorizontalOptions="FillAndExpand" />
             <Button Text="Save" Command="{Binding AddToDoItem}" />
         </StackLayout>
         <ListView ItemsSource="{Binding ToDoItems}" >
