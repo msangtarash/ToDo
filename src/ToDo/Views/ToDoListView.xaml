@@ -22,7 +22,7 @@
                             </Switch>
                             <Button Text="Toggle to do!" Command="{Binding BindingContext.ToggleToDoItemIsFinished, Source={x:Reference Name=ToDoListView}}" CommandParameter="{Binding .}" />
                             <Label Text="{Binding Text}" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand" />
-                            <Button Text="Delete" HorizontalOptions="End" TextColor="Red" Command="{Binding BindingContext.DeleteTodoItem, Source={x:Reference Name=ToDoListView}}" CommandParameter="{Binding .}" />
+                            <Button Text="Delete" HorizontalOptions="End" TextColor="Red" Command="{Binding BindingContext.DeleteToDoItem, Source={x:Reference Name=ToDoListView}}" CommandParameter="{Binding .}" />
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>
