@@ -4,6 +4,7 @@
              x:Class="ToDo.Views.ToDoGroupsView"
              xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
              xmlns:views="clr-namespace:ToDo.Views"
+             xmlns:props="clr-namespace:ToDo.Views.Properties"
              Title="To do groups" x:Name="ToDoGroupsView">
     <ContentPage.Behaviors>
         <b:EventToCommandBehavior EventName="Appearing" Command="{Binding LoadToDoGroups}"/>
@@ -11,11 +12,7 @@
     <ContentPage.Content>
         <StackLayout Padding="5,30,5,5">
             <StackLayout>
-                <Entry Text="{Binding NewToDoGroupName}" views:EntryManager.LessUnderLineEntry="True" Placeholder="New to do group name" BackgroundColor="#51adf6">
-                    <!--<Entry.Behaviors>
-                        <views:MagicText />
-                    </Entry.Behaviors>-->
-                </Entry>
+                <Entry Text="{Binding NewToDoGroupName}" props:EntryProperties.HideUnderline="False" Placeholder="New to do group name" BackgroundColor="#51adf6" />
                 <Button Text="Save" Command="{Binding AddToDoGroup}" HorizontalOptions="Fill" />
             </StackLayout>
             <ListView ItemsSource="{Binding ToDoGroups}">

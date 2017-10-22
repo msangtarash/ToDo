@@ -2,6 +2,7 @@
 using System;
 using System.IO;
 using ToDo.Model;
+using Xamarin.Forms;
 
 namespace ToDo.DataAccess
 {
@@ -9,7 +10,11 @@ namespace ToDo.DataAccess
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite($"Filename={Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "toDoDb-V1.db")}");
+            string fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "toDoDb-V1.db");
+            if (Device.RuntimePlatform == Device.UWP)
+                fileName = "toDoDb-V1.db";
+
+            optionsBuilder.UseSqlite($"Filename={fileName}");
 
             base.OnConfiguring(optionsBuilder);
         }
