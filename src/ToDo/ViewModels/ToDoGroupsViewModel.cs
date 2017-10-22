@@ -11,8 +11,8 @@ namespace ToDo.ViewModels
 {
     public class ToDoGroupsViewModel : BindableBase
     {
-        private readonly ToDoDbContext dbContext;
-        private readonly INavigationService _NavigationService;
+        private readonly ToDoDbContext _dbContext;
+        private readonly INavigationService _navigationService;
 
         public DelegateCommand LoadToDoGroups { get; set; }
         public DelegateCommand AddToDoGroup { get; set; }
@@ -42,9 +42,9 @@ namespace ToDo.ViewModels
 
         public ToDoGroupsViewModel(INavigationService navigationService)
         {
-            _NavigationService = navigationService;
+            _navigationService = navigationService;
 
-            dbContext = new ToDoDbContext();
+            _dbContext = new ToDoDbContext();
 
             LoadToDoGroups = new DelegateCommand(async () =>
             {
@@ -52,18 +52,17 @@ namespace ToDo.ViewModels
                 {
                     IsBusy = true;
 
-                    await dbContext.Database.EnsureCreatedAsync();
+                    await _dbContext.Database.EnsureCreatedAsync();
 
-                    await dbContext.ToDoGroups.LoadAsync();
+                    await _dbContext.ToDoGroups.LoadAsync();
 
-                    ToDoGroups = new ObservableCollection<ToDoGroup>(dbContext.ToDoGroups.Local);
+                    ToDoGroups = new ObservableCollection<ToDoGroup>(_dbContext.ToDoGroups.Local);
                 }
                 finally
                 {
                     IsBusy = false;
                 }
             });
-
 
             AddToDoGroup = new DelegateCommand(async () =>
             {
@@ -73,9 +72,9 @@ namespace ToDo.ViewModels
 
                     ToDoGroup toDoGroup = new ToDoGroup { Name = NewToDoGroupName };
 
-                    await dbContext.ToDoGroups.AddAsync(toDoGroup);
+                    await _dbContext.ToDoGroups.AddAsync(toDoGroup);
 
-                    await dbContext.SaveChangesAsync();
+                    await _dbContext.SaveChangesAsync();
 
                     ToDoGroups.Add(toDoGroup);
 
@@ -95,8 +94,8 @@ namespace ToDo.ViewModels
                 try
                 {
                     IsBusy = true;
-                    dbContext.Entry(toDoGroup).State = EntityState.Deleted;
-                    await dbContext.SaveChangesAsync();
+                    _dbContext.Entry(toDoGroup).State = EntityState.Deleted;
+                    await _dbContext.SaveChangesAsync();
                     ToDoGroups.Remove(toDoGroup);
                 }
                 finally

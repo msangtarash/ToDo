@@ -21,7 +21,7 @@ namespace ToDo.ViewModels
 
         public virtual DelegateCommand AddToDoItem { get; set; }
 
-        public virtual DelegateCommand<ToDoItem> DeleteTodoItem { get; set; }
+        public virtual DelegateCommand<ToDoItem> DeleteToDoItem { get; set; }
 
         private ObservableCollection<ToDoItem> _ToDoItems;
 
@@ -55,7 +55,7 @@ namespace ToDo.ViewModels
 
         private IQueryable<ToDoItem> GetToDoItemsQuery(IQueryable<ToDoItem> toDoItemsBaseQuery, bool loadAll)
         {
-            toDoItemsBaseQuery = toDoItemsBaseQuery.Where(todo => todo.GroupId == _toDoGroupId);
+            toDoItemsBaseQuery = toDoItemsBaseQuery.Where(toDo => toDo.GroupId == _toDoGroupId);
 
             if (loadAll == false)
                 toDoItemsBaseQuery = toDoItemsBaseQuery.Where(toDo => toDo.IsFinished == false);
@@ -157,7 +157,7 @@ namespace ToDo.ViewModels
             AddToDoItem.ObservesProperty(() => IsBusy);
             AddToDoItem.ObservesProperty(() => NewToDoText);
 
-            DeleteTodoItem = new DelegateCommand<ToDoItem>(async (toDoItem) =>
+            DeleteToDoItem = new DelegateCommand<ToDoItem>(async (toDoItem) =>
             {
                 try
                 {
@@ -173,7 +173,7 @@ namespace ToDo.ViewModels
 
             }, (toDoItem) => !IsBusy);
 
-            DeleteTodoItem.ObservesProperty(() => IsBusy);
+            DeleteToDoItem.ObservesProperty(() => IsBusy);
         }
     }
 }

@@ -15,16 +15,15 @@
     <Compile Include="$(MSBuildThisFileDirectory)DataAccess\ToDoDbContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\ToDoGroup.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\ToDoItem.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BooleanConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\DictionaryExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Converters\BooleanConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Extensions\DictionaryExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ToDoGroupsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ToDoListViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Properties\EntryProperties.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\ToDoGroupsView.xaml.cs">
       <DependentUpon>ToDoGroupsView.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\ToDoButtonRenderer.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\ToDoEntryRenderer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\ToDoListView.xaml.cs">
       <DependentUpon>ToDoListView.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -47,5 +46,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)ViewModels\Extensions\" />
+    <Folder Include="$(MSBuildThisFileDirectory)ViewModels\Converters\" />
   </ItemGroup>
 </Project>

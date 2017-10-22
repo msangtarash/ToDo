@@ -2,7 +2,7 @@
 using System.Globalization;
 using Xamarin.Forms;
 
-namespace ToDo.ViewModels
+namespace ToDo.ViewModels.Converters
 {
     public class BooleanConverter : IValueConverter
     {
