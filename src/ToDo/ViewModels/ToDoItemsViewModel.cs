@@ -125,7 +125,7 @@ namespace ToDo.ViewModels
 
                     await _dbContext.SaveChangesAsync();
 
-                    if (LoadAll == false && toDoItem.IsFinished == false)
+                    if (LoadAll == false && toDoItem.IsFinished == true)
                         ToDoItems.Remove(toDoItem);
                 }
                 catch
