@@ -106,7 +106,7 @@ namespace ToDo.ViewModels
 
             OpenToDoItems = new DelegateCommand<ToDoGroup>(async (toDoGroup) =>
             {
-                await navigationService.NavigateAsync("ToDoList", new Dictionary<string, object>
+                await navigationService.NavigateAsync("/ToDoGroups/Nav/ToDoList", new Dictionary<string, object>
                 {
                     { "toDoGroupId", toDoGroup.Id }
                 }.ToNavParams());
