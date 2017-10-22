@@ -20,13 +20,13 @@ namespace ToDo
         {
             InitializeComponent();
 
-            NavigationService.NavigateAsync("ToDoGroups/Nav/ToDoList");
+            NavigationService.NavigateAsync("ToDoGroups/Nav/ToDoItems");
         }
         
         protected override void RegisterTypes()
         {
             Container.RegisterTypeForNavigation<NavigationPage>("Nav");
-            Container.RegisterTypeForNavigation<ToDoItemsView, ToDoItemsViewModel>("ToDoList");
+            Container.RegisterTypeForNavigation<ToDoItemsView, ToDoItemsViewModel>("ToDoItems");
             Container.RegisterTypeForNavigation<ToDoGroupsView, ToDoGroupsViewModel>("ToDoGroups");
         }
     }

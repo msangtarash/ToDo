@@ -17,12 +17,12 @@
                         <StackLayout Orientation="Horizontal">
                             <Switch IsToggled="{Binding IsFinished, Mode=OneWay}">
                                 <!--<Switch.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding BindingContext.ToggleToDoItemIsFinished, Source={x:Reference Name=ToDoListView}}" CommandParameter="{Binding .}" />
+                                    <TapGestureRecognizer Command="{Binding BindingContext.ToggleToDoItemIsFinished, Source={x:Reference Name=ToDoItemsView}}" CommandParameter="{Binding .}" />
                                 </Switch.GestureRecognizers>-->
                             </Switch>
-                            <Button Text="Toggle to do!" Command="{Binding BindingContext.ToggleToDoItemIsFinished, Source={x:Reference Name=ToDoListView}}" CommandParameter="{Binding .}" />
+                            <Button Text="Toggle to do!" Command="{Binding BindingContext.ToggleToDoItemIsFinished, Source={x:Reference Name=ToDoItemsView}}" CommandParameter="{Binding .}" />
                             <Label Text="{Binding Text}" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand" />
-                            <Button Text="Delete" HorizontalOptions="End" TextColor="Red" Command="{Binding BindingContext.DeleteToDoItem, Source={x:Reference Name=ToDoListView}}" CommandParameter="{Binding .}" />
+                            <Button Text="Delete" HorizontalOptions="End" TextColor="Red" Command="{Binding BindingContext.DeleteToDoItem, Source={x:Reference Name=ToDoItemsView}}" CommandParameter="{Binding .}" />
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>
@@ -30,9 +30,9 @@
         </ListView>
         <StackLayout Orientation="Horizontal">
             <Label Text="Load all?" VerticalTextAlignment="Center" />
-            <Switch x:Name="ShowAllSwitch" >
+            <Switch x:Name="ShowAllSwitch" IsToggled="{Binding LoadAll}" >
                 <Switch.Behaviors>
-                    <b:EventToCommandBehavior EventName="Toggled" Command="{Binding LoadToDoItems}" CommandParameter="{Binding IsToggled, Source={x:Reference Name=ShowAllSwitch}, Converter={StaticResource BooleanConverter}}" />
+                    <b:EventToCommandBehavior EventName="Toggled" Command="{Binding LoadToDoItems}"/>
                 </Switch.Behaviors>
             </Switch>
         </StackLayout>

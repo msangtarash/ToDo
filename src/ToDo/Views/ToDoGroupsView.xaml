@@ -7,39 +7,34 @@
                   Title="To do groups" x:Name="ToDoGroupsView">
     <MasterDetailPage.Master >
         <ContentPage Title="MyMaster">
-        <ContentPage.Behaviors>
-            <b:EventToCommandBehavior EventName="Appearing" Command="{Binding LoadToDoGroups}"/>
-        </ContentPage.Behaviors>
-        <ContentPage.Content>
-            <StackLayout Padding="5,30,5,5">
-                <StackLayout>
-                    <Entry Text="{Binding NewToDoGroupName}"  Placeholder="New to do group name" BackgroundColor="#51adf6">
-                        <!--<Entry.Behaviors>
-                        <views:MagicText />
-                    </Entry.Behaviors>-->
-                    </Entry>
-                    <Button Text="Save" Command="{Binding AddToDoGroup}" HorizontalOptions="Fill" />
+            <ContentPage.Behaviors>
+                <b:EventToCommandBehavior EventName="Appearing" Command="{Binding LoadToDoGroups}" />
+            </ContentPage.Behaviors>
+            <ContentPage.Content>
+                <StackLayout Padding="5,30,5,5">
+                    <StackLayout>
+                        <Entry Text="{Binding NewToDoGroupName}"  Placeholder="New to do group name" />
+                        <Button Text="Save" Command="{Binding AddToDoGroup}" HorizontalOptions="Fill" />
+                    </StackLayout>
+                    <ListView ItemsSource="{Binding ToDoGroups}">
+                        <ListView.Behaviors>
+                            <b:EventToCommandBehavior EventName="ItemSelected" EventArgsParameterPath="SelectedItem" Command="{Binding OpenToDoItems}" />
+                        </ListView.Behaviors>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <ViewCell.ContextActions>
+                                        <MenuItem Command="{Binding BindingContext.DeleteToDoGroup, Source={x:Reference Name=ToDoGroupsView}}" CommandParameter="{Binding .}" Text="Delete" />
+                                    </ViewCell.ContextActions>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="{Binding Name}" HorizontalOptions="FillAndExpand" />
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
                 </StackLayout>
-                <ListView ItemsSource="{Binding ToDoGroups}">
-                    <ListView.Behaviors>
-                        <b:EventToCommandBehavior EventName="ItemSelected" EventArgsParameterPath="SelectedItem" Command="{Binding OpenToDoItems}" />
-                    </ListView.Behaviors>
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <ViewCell.ContextActions>
-                                    <MenuItem Command="{Binding BindingContext.DeleteToDoGroup, Source={x:Reference Name=ToDoGroupsView}}" CommandParameter="{Binding .}"
-               Text="Delete" ></MenuItem>
-                                </ViewCell.ContextActions>
-                                <StackLayout Orientation="Horizontal">
-                                    <Label Text="{Binding Name}" HorizontalOptions="FillAndExpand" />
-                                </StackLayout>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </StackLayout>
-        </ContentPage.Content>
+            </ContentPage.Content>
         </ContentPage>
     </MasterDetailPage.Master>
 </MasterDetailPage>

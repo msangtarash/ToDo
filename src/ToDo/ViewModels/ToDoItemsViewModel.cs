@@ -15,7 +15,7 @@ namespace ToDo.ViewModels
 
         private int _toDoGroupId;
 
-        public virtual DelegateCommand<bool?> LoadToDoItems { get; set; }
+        public virtual DelegateCommand LoadToDoItems { get; set; }
 
         public virtual DelegateCommand<ToDoItem> ToggleToDoItemIsFinished { get; set; }
 
@@ -53,11 +53,18 @@ namespace ToDo.ViewModels
             set { SetProperty(ref _GroupName, value); }
         }
 
-        private IQueryable<ToDoItem> GetToDoItemsQuery(IQueryable<ToDoItem> toDoItemsBaseQuery, bool loadAll)
+        private bool _LoadAll;
+        public virtual bool LoadAll
+        {
+            get { return _LoadAll; }
+            set { SetProperty(ref _LoadAll, value); }
+        }
+
+        private IQueryable<ToDoItem> GetToDoItemsQuery(IQueryable<ToDoItem> toDoItemsBaseQuery)
         {
             toDoItemsBaseQuery = toDoItemsBaseQuery.Where(toDo => toDo.GroupId == _toDoGroupId);
 
-            if (loadAll == false)
+            if (LoadAll == false)
                 toDoItemsBaseQuery = toDoItemsBaseQuery.Where(toDo => toDo.IsFinished == false);
             else
                 toDoItemsBaseQuery = toDoItemsBaseQuery.OrderBy(toDo => toDo.IsFinished == true);
@@ -74,8 +81,8 @@ namespace ToDo.ViewModels
         {
             _toDoGroupId = navigationParams.GetValue<int>("toDoGroupId");
 
-            LoadToDoItems.Execute(false);
-            
+            LoadToDoItems.Execute();
+
             GroupName = (await _dbContext.ToDoGroups.FindAsync(_toDoGroupId))?.Name;
         }
 
@@ -88,7 +95,7 @@ namespace ToDo.ViewModels
         {
             _dbContext = new ToDoDbContext();
 
-            LoadToDoItems = new DelegateCommand<bool?>(async (loadAll) =>
+            LoadToDoItems = new DelegateCommand(async () =>
             {
                 try
                 {
@@ -96,15 +103,15 @@ namespace ToDo.ViewModels
 
                     await _dbContext.Database.EnsureCreatedAsync();
 
-                    await GetToDoItemsQuery(_dbContext.ToDoItems, loadAll.Value).LoadAsync();
+                    await GetToDoItemsQuery(_dbContext.ToDoItems).LoadAsync();
 
-                    ToDoItems = new ObservableCollection<ToDoItem>(GetToDoItemsQuery(_dbContext.ToDoItems.Local.AsQueryable(), loadAll.Value));
+                    ToDoItems = new ObservableCollection<ToDoItem>(GetToDoItemsQuery(_dbContext.ToDoItems.Local.AsQueryable()));
                 }
                 finally
                 {
                     IsBusy = false;
                 }
-            }, (loadAll) => loadAll.HasValue && !IsBusy);
+            }, () => !IsBusy);
 
             LoadToDoItems.ObservesProperty(() => IsBusy);
 
@@ -117,6 +124,9 @@ namespace ToDo.ViewModels
                     toDoItem.IsFinished = !toDoItem.IsFinished;
 
                     await _dbContext.SaveChangesAsync();
+
+                    if (LoadAll == false && toDoItem.IsFinished == false)
+                        ToDoItems.Remove(toDoItem);
                 }
                 catch
                 {

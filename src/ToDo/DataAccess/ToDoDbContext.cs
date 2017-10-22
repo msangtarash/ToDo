@@ -10,11 +10,12 @@ namespace ToDo.DataAccess
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "toDoDb-V1.db");
-            if (Device.RuntimePlatform == Device.UWP)
-                fileName = "toDoDb-V1.db";
+            string dbFileName = "toDoDb-V10.db";
 
-            optionsBuilder.UseSqlite($"Filename={fileName}");
+            if (Device.RuntimePlatform != Device.UWP)
+                dbFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), dbFileName);
+
+            optionsBuilder.UseSqlite($"Filename={dbFileName}");
 
             base.OnConfiguring(optionsBuilder);
         }
@@ -25,7 +26,7 @@ namespace ToDo.DataAccess
                 .HasOne(toDo => toDo.Group)
                 .WithMany(toDoGroup => toDoGroup.ToDoItems)
                 .HasForeignKey(toDo => toDo.GroupId)
-                .IsRequired(false);
+                .IsRequired(required: false);
 
             base.OnModelCreating(modelBuilder);
         }
