@@ -26,9 +26,8 @@ namespace ToDo
         protected override void RegisterTypes()
         {
             Container.RegisterTypeForNavigation<NavigationPage>("Nav");
-            Container.RegisterTypeForNavigation<ToDoListView, ToDoListViewModel>("ToDoList");
+            Container.RegisterTypeForNavigation<ToDoItemsView, ToDoItemsViewModel>("ToDoList");
             Container.RegisterTypeForNavigation<ToDoGroupsView, ToDoGroupsViewModel>("ToDoGroups");
-
         }
     }
 }
