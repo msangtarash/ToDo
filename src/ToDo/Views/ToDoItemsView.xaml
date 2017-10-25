@@ -5,7 +5,17 @@
              xmlns:views="clr-namespace:ToDo.Views"
              x:Class="ToDo.Views.ToDoItemsView"
              x:Name="ToDoItemsView" Title="{Binding GroupName}">
-    <StackLayout Padding="15">
+    <StackLayout Padding="10">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Label Text="{Binding Date, StringFormat='{0:MMMM d, yyyy HH:mm}'}" Font="15,Bold" />
+            <!--<Image Source="WallPaper.jpg" Grid.Row="0" Grid.Column="0" />-->
+        </Grid>
         <StackLayout Orientation="Horizontal">
             <Entry Placeholder="New to do item text..." Text="{Binding NewToDoText}" HorizontalOptions="FillAndExpand" />
             <Button Text="Save" Command="{Binding AddToDoItem}" />

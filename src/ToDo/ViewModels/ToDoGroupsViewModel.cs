@@ -9,7 +9,7 @@ using ToDo.Model;
 
 namespace ToDo.ViewModels
 {
-    public class ToDoGroupsViewModel : BindableBase
+    public class ToDoGroupsViewModel : BindableBase, IDestructible
     {
         private readonly ToDoDbContext _dbContext;
         private readonly INavigationService _navigationService;
@@ -111,6 +111,11 @@ namespace ToDo.ViewModels
                     { "toDoGroupId", toDoGroup.Id }
                 }.ToNavParams());
             });
+        }
+
+        public virtual void Destroy()
+        {
+            _dbContext.Dispose();
         }
     }
 }
