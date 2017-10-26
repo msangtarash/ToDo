@@ -12,11 +12,7 @@
             </ContentPage.Behaviors>
             <ContentPage.Content>
                 <StackLayout Padding="5,30,5,5">
-                    <StackLayout  Orientation="Vertical">
-                            <Entry Text="{Binding NewToDoGroupName}"  Placeholder="New to do group name" Grid.Column="0" Grid.Row="0" />
-                            <Button Text="Save" Command="{Binding AddToDoGroup}" HorizontalOptions="Fill" Grid.Column="0" Grid.Row="0" />
-                        </StackLayout>
-                        <ListView ItemsSource="{Binding ToDoGroups}">
+                    <ListView ItemsSource="{Binding ToDoGroups}" Margin="5" SeparatorVisibility="None">
                         <ListView.Behaviors>
                             <b:EventToCommandBehavior EventName="ItemSelected" EventArgsParameterPath="SelectedItem" Command="{Binding OpenToDoItems}" />
                         </ListView.Behaviors>
@@ -33,6 +29,10 @@
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
+                    <StackLayout  Orientation="Horizontal">
+                        <Button Command="{Binding AddToDoGroup}" Grid.Column="0" Grid.Row="0" HorizontalOptions="Start" Image="Add.png" WidthRequest="20" BackgroundColor="White"/>
+                        <Entry Text="{Binding NewToDoGroupName}"  Placeholder="New to do group name" Grid.Column="0" Grid.Row="0" />
+                    </StackLayout>
                 </StackLayout>
             </ContentPage.Content>
         </ContentPage>
