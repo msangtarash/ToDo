@@ -10,49 +10,50 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
-    <Grid Grid.Row="0">
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Image Source="WallPaper.jpg" Grid.Row="0" Grid.Column="0" Aspect="AspectFill" />
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Image Source="WallPaper.jpg" Grid.Row="0" Grid.Column="0" Aspect="AspectFill" />
             <StackLayout Grid.Row="0" Grid.Column="0" VerticalOptions="EndAndExpand" Margin="20" Orientation="Vertical">
                 <Label Text="{Binding GroupName}" FontSize="32"/>
+                <Label Text="{Binding CurrentDate}" Font="25,Bold" />
             </StackLayout>
         </Grid>
-    <StackLayout Padding="10" Grid.Row="1">
-        <StackLayout Orientation="Horizontal">
+        <StackLayout Padding="10" Grid.Row="1">
+            <StackLayout Orientation="Horizontal">
                 <Button Command="{Binding AddToDoItem}" Image="Add2.png" BackgroundColor="White" WidthRequest="20"/>
                 <Entry Placeholder="New to do item text..." Text="{Binding NewToDoText}" HorizontalOptions="FillAndExpand" />
             </StackLayout>
-        <ListView ItemsSource="{Binding ToDoItems}" >
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <StackLayout Orientation="Horizontal">
-                            <Switch IsToggled="{Binding IsFinished, Mode=OneWay}" IsVisible="False">
-                                <!--<Switch.GestureRecognizers>
+            <ListView ItemsSource="{Binding ToDoItems}" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <Switch IsToggled="{Binding IsFinished, Mode=OneWay}" IsVisible="False">
+                                    <!--<Switch.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding BindingContext.ToggleToDoItemIsFinished, Source={x:Reference Name=ToDoItemsView}}" CommandParameter="{Binding .}" />
                                 </Switch.GestureRecognizers>-->
-                            </Switch>
+                                </Switch>
                                 <Button Command="{Binding BindingContext.ToggleToDoItemIsFinished, Source={x:Reference Name=ToDoItemsView}}" CommandParameter="{Binding .}" WidthRequest="30"  />
-                            <Label Text="{Binding Text}" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand" />
-                            <Button Text="Delete" HorizontalOptions="End" TextColor="Red" Command="{Binding BindingContext.DeleteToDoItem, Source={x:Reference Name=ToDoItemsView}}" CommandParameter="{Binding .}" />
-                        </StackLayout>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-        <StackLayout Orientation="Horizontal">
-            <Label Text="Load all?" VerticalTextAlignment="Center" />
-            <Switch x:Name="ShowAllSwitch" IsToggled="{Binding LoadAll}" >
-                <Switch.Behaviors>
-                    <b:EventToCommandBehavior EventName="Toggled" Command="{Binding LoadToDoItems}"/>
-                </Switch.Behaviors>
-            </Switch>
+                                <Label Text="{Binding Text}" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand" />
+                                <Button Text="Delete" HorizontalOptions="End" TextColor="Red" Command="{Binding BindingContext.DeleteToDoItem, Source={x:Reference Name=ToDoItemsView}}" CommandParameter="{Binding .}" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Load all?" VerticalTextAlignment="Center" />
+                <Switch x:Name="ShowAllSwitch" IsToggled="{Binding LoadAll}" >
+                    <Switch.Behaviors>
+                        <b:EventToCommandBehavior EventName="Toggled" Command="{Binding LoadToDoItems}"/>
+                    </Switch.Behaviors>
+                </Switch>
+            </StackLayout>
         </StackLayout>
-    </StackLayout>
     </Grid>
 </ContentPage>
