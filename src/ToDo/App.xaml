@@ -10,6 +10,8 @@
             <sys:Boolean x:Key="True">True</sys:Boolean>
             <sys:Boolean x:Key="False">False</sys:Boolean>
             <converters:BooleanConverter x:Key="BooleanConverter" />
+            <converters:BooleanToCheckedIconConverter x:Key="BooleanToCheckedIconConverter"/>
         </ResourceDictionary>
+
     </prism:PrismApplication.Resources>
 </prism:PrismApplication>

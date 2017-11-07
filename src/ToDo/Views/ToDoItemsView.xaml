@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
              xmlns:views="clr-namespace:ToDo.Views"
+             xmlns:mi="clr-namespace:MaterialIcons.FormsPlugin.Abstractions;assembly=MaterialIcons.FormsPlugin.Abstractions"
              x:Class="ToDo.Views.ToDoItemsView"
              x:Name="ToDoItemsView" Title="{Binding GroupName}">
     <Grid>
@@ -11,21 +12,15 @@
             <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Image Source="WallPaper.jpg" Grid.Row="0" Grid.Column="0" Aspect="AspectFill" />
-            <StackLayout Grid.Row="0" Grid.Column="0" VerticalOptions="EndAndExpand" Margin="20" Orientation="Vertical">
+            <Image Source="WallPaper.jpg" Aspect="AspectFill" />
+            <StackLayout VerticalOptions="EndAndExpand" Margin="20" Orientation="Vertical">
                 <Label Text="{Binding GroupName}" FontSize="32"/>
                 <Label Text="{Binding CurrentDate}" Font="25,Bold" />
             </StackLayout>
         </Grid>
         <StackLayout Padding="10" Grid.Row="1">
             <StackLayout Orientation="Horizontal">
-                <Button Command="{Binding AddToDoItem}" Image="Add2.png" BackgroundColor="White" WidthRequest="20"/>
+                <mi:IconButton Command="{Binding AddToDoItem}" Icon="ic_add_circle_outline" FontSize="30" TextColor="Gray" WidthRequest="50" BackgroundColor="White"/>
                 <Entry Placeholder="New to do item text..." Text="{Binding NewToDoText}" HorizontalOptions="FillAndExpand" />
             </StackLayout>
             <ListView ItemsSource="{Binding ToDoItems}" >
@@ -38,9 +33,10 @@
                                     <TapGestureRecognizer Command="{Binding BindingContext.ToggleToDoItemIsFinished, Source={x:Reference Name=ToDoItemsView}}" CommandParameter="{Binding .}" />
                                 </Switch.GestureRecognizers>-->
                                 </Switch>
-                                <Button Command="{Binding BindingContext.ToggleToDoItemIsFinished, Source={x:Reference Name=ToDoItemsView}}" CommandParameter="{Binding .}" WidthRequest="30"  />
+                                <mi:IconButton Command="{Binding BindingContext.ToggleToDoItemIsFinished, Source={x:Reference Name=ToDoItemsView}}" CommandParameter="{Binding .}" Icon="{Binding IsFinished, Converter={StaticResource BooleanToCheckedIconConverter}}" FontSize="25" TextColor="#2196f3" WidthRequest="50" BackgroundColor="Transparent" />
                                 <Label Text="{Binding Text}" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand" />
-                                <Button Text="Delete" HorizontalOptions="End" TextColor="Red" Command="{Binding BindingContext.DeleteToDoItem, Source={x:Reference Name=ToDoItemsView}}" CommandParameter="{Binding .}" />
+                                <Label Text="{Binding ToDoItemDate,StringFormat='{0:MMMM d, yyyy HH:mm}'}"/>
+                                <mi:IconButton BorderColor="Black" TextColor="Red" Command="{Binding BindingContext.DeleteToDoItem, Source={x:Reference Name=ToDoItemsView}}" CommandParameter="{Binding .}" Icon="ic_delete"  FontSize="20" WidthRequest="50" />
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

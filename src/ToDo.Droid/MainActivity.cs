@@ -27,6 +27,7 @@ namespace ToDo.Droid
             base.OnCreate(bundle);
 
             Forms.Init(this, bundle);
+            MaterialIcons.FormsPlugin.iOS.MaterialIconControls.Init();
 
             LoadApplication(new App(new AndroidInitializer()));
         }
@@ -34,7 +35,7 @@ namespace ToDo.Droid
 #if DEBUG
         private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
-
+            
         }
 #endif
     }
