@@ -3,6 +3,7 @@
                   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                   x:Class="ToDo.Views.ToDoGroupsView"
                   xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
+                  xmlns:mi="clr-namespace:MaterialIcons.FormsPlugin.Abstractions;assembly=MaterialIcons.FormsPlugin.Abstractions"
                   xmlns:views="clr-namespace:ToDo.Views"
                   Title="To do groups" x:Name="ToDoGroupsView">
     <MasterDetailPage.Master >
@@ -12,7 +13,8 @@
             </ContentPage.Behaviors>
             <ContentPage.Content>
                 <StackLayout Padding="5,30,5,5">
-                    <ListView ItemsSource="{Binding ToDoGroups}" Margin="5" SeparatorVisibility="None">
+                    <SearchBar Placeholder="Search ToDo Groups"></SearchBar>
+                    <ListView ItemsSource="{Binding ToDoGroups}" Margin="5" SeparatorVisibility="None" x:Name="List">
                         <ListView.Behaviors>
                             <b:EventToCommandBehavior EventName="ItemSelected" EventArgsParameterPath="SelectedItem" Command="{Binding OpenToDoItems}" />
                         </ListView.Behaviors>
@@ -24,14 +26,15 @@
                                     </ViewCell.ContextActions>
                                     <StackLayout Orientation="Horizontal">
                                         <Label Text="{Binding Name}" HorizontalOptions="FillAndExpand" />
+                                        <Label Text="{Binding CountToDoItems}" HorizontalOptions="End"/>
                                     </StackLayout>
                                 </ViewCell>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
                     <StackLayout  Orientation="Horizontal">
-                        <Button Command="{Binding AddToDoGroup}" Grid.Column="0" Grid.Row="0" HorizontalOptions="Start" Image="Add.png" WidthRequest="20" BackgroundColor="White"/>
-                        <Entry Text="{Binding NewToDoGroupName}"  Placeholder="New to do group name" Grid.Column="0" Grid.Row="0" />
+                        <mi:IconButton Command="{Binding AddToDoGroup}"  HorizontalOptions="Start" Icon="ic_add_circle_outline" TextColor="Gray" FontSize="25" WidthRequest="50" BackgroundColor="White"/>
+                        <Entry Text="{Binding NewToDoGroupName}"  Placeholder="New to do group name" />
                     </StackLayout>
                 </StackLayout>
             </ContentPage.Content>

@@ -7,6 +7,6 @@ namespace ToDo.Views
         public ToDoItemsView()
         {
             InitializeComponent();
-        }       
+        }
     }
 }

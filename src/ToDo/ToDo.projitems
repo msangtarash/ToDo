@@ -16,6 +16,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Model\ToDoGroup.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\ToDoItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Converters\BooleanConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Converters\BooleanToCheckedIconConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Converters\ToDoItemDateCoverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Extensions\DictionaryExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ToDoGroupsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ToDoItemsViewModel.cs" />
@@ -43,18 +45,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)ViewModels\Extensions\" />
-    <Folder Include="$(MSBuildThisFileDirectory)ViewModels\Converters\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\ToDoItemsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Resources\Xamarin.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Resources\WallPaper.jpg" />
   </ItemGroup>
 </Project>

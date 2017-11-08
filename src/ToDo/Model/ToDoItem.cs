@@ -1,4 +1,5 @@
 ﻿using Prism.Mvvm;
+using System;
 
 namespace ToDo.Model
 {
@@ -10,6 +11,15 @@ namespace ToDo.Model
             get { return _Id; }
             set { SetProperty(ref _Id, value); }
         }
+
+        private DateTimeOffset _ToDoItemDate;
+
+        public virtual DateTimeOffset ToDoItemDate
+        {
+            get => _ToDoItemDate;
+            set => SetProperty(ref _ToDoItemDate, value);
+        }
+
 
         private string _Text;
         public virtual string Text
