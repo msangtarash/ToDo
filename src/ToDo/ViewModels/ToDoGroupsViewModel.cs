@@ -40,6 +40,13 @@ namespace ToDo.ViewModels
             set { SetProperty(ref _NewToDoGroupName, value); }
         }
 
+        private string _CountToDoItems;
+        public virtual string CountToDoItems
+        {
+            get { return _CountToDoItems; }
+            set { SetProperty(ref _CountToDoItems, value); }
+        }
+
         public ToDoGroupsViewModel(INavigationService navigationService)
         {
             _navigationService = navigationService;

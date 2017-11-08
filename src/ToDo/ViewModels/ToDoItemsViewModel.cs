@@ -1,10 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Humanizer;
+using Microsoft.EntityFrameworkCore;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
 using System;
 using System.Collections.ObjectModel;
-using System.Globalization;
 using System.Linq;
 using ToDo.DataAccess;
 using ToDo.Model;
@@ -48,7 +48,7 @@ namespace ToDo.ViewModels
             set { SetProperty(ref _NewToDoText, value); }
         }
 
-        private string _GroupName ;
+        private string _GroupName;
         public virtual string GroupName
         {
             get { return _GroupName; }
@@ -68,6 +68,7 @@ namespace ToDo.ViewModels
             get { return _CurrentDate; }
             set { SetProperty(ref _CurrentDate, value); }
         }
+
 
         private IQueryable<ToDoItem> GetToDoItemsQuery(IQueryable<ToDoItem> toDoItemsBaseQuery)
         {
@@ -103,10 +104,8 @@ namespace ToDo.ViewModels
         public ToDoItemsViewModel()
         {
             _dbContext = new ToDoDbContext();
-            DateTime thisDay = DateTime.Now;
 
-            PersianCalendar jc = new PersianCalendar();
-            CurrentDate = string.Format("{3:f} {0:0000}/{1:00}/{2:00}", jc.GetYear(thisDay), jc.GetMonth(thisDay), jc.GetDayOfMonth(thisDay) , jc.GetDayOfWeek(thisDay));
+            CurrentDate = DateTime.UtcNow.ToShortDateString();
 
             LoadToDoItems = new DelegateCommand(async () =>
             {
@@ -130,6 +129,7 @@ namespace ToDo.ViewModels
 
             ToggleToDoItemIsFinished = new DelegateCommand<ToDoItem>(async (toDoItem) =>
             {
+
                 try
                 {
                     IsBusy = true;
@@ -139,7 +139,12 @@ namespace ToDo.ViewModels
                     await _dbContext.SaveChangesAsync();
 
                     if (LoadAll == false && toDoItem.IsFinished == true)
+                    {
                         ToDoItems.Remove(toDoItem);
+
+                    }
+
+
                 }
                 catch
                 {
@@ -161,7 +166,7 @@ namespace ToDo.ViewModels
                 {
                     IsBusy = true;
 
-                    ToDoItem toDoItem = new ToDoItem { IsFinished = false, Text = NewToDoText, GroupId = _toDoGroupId };
+                    ToDoItem toDoItem = new ToDoItem { IsFinished = false, Text = NewToDoText, GroupId = _toDoGroupId , ToDoItemDate = DateTimeOffset.UtcNow};
 
                     await _dbContext.ToDoItems.AddAsync(toDoItem);
 

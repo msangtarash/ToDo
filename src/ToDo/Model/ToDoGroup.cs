@@ -1,4 +1,5 @@
 ﻿using Prism.Mvvm;
+using System;
 using System.Collections.ObjectModel;
 
 namespace ToDo.Model
@@ -11,6 +12,14 @@ namespace ToDo.Model
             get { return _Id; }
             set { SetProperty(ref _Id, value); }
         }
+        private DateTimeOffset _ToDoGroupDate;
+
+        public virtual DateTimeOffset ToDoGroupDate
+        {
+            get => _ToDoGroupDate;
+            set => SetProperty(ref _ToDoGroupDate, value);
+        }
+
 
         private string _Name;
         public virtual string Name
