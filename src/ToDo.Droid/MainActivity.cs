@@ -2,7 +2,7 @@
 using Android.Content.PM;
 using Android.OS;
 using Autofac;
-using Prism.Autofac.Forms;
+using Prism.Autofac;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
@@ -43,9 +43,8 @@ namespace ToDo.Droid
 
     public class AndroidInitializer : IPlatformInitializer
     {
-        public virtual void RegisterTypes(IContainer container)
+        public void RegisterTypes(ContainerBuilder container)
         {
-
         }
     }
 }

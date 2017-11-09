@@ -1,5 +1,4 @@
 ﻿using Prism.Autofac;
-using Prism.Autofac.Forms;
 using ToDo.ViewModels;
 using ToDo.Views;
 using Xamarin.Forms;
@@ -25,10 +24,10 @@ namespace ToDo
         
         protected override void RegisterTypes()
         {
-            Container.RegisterTypeForNavigation<NavigationPage>("Nav");
-            Container.RegisterTypeForNavigation<ToDoItemsView, ToDoItemsViewModel>("ToDoItems");
-            Container.RegisterTypeForNavigation<ToDoGroupsView, ToDoGroupsViewModel>("ToDoGroups");
-            Container.RegisterTypeForNavigation<ToDoItemDetailView, ToDoItemDetailViewModel>("ToDoItemDetail");
+            Builder.RegisterTypeForNavigation<NavigationPage>("Nav");
+            Builder.RegisterTypeForNavigation<ToDoItemsView, ToDoItemsViewModel>("ToDoItems");
+            Builder.RegisterTypeForNavigation<ToDoGroupsView, ToDoGroupsViewModel>("ToDoGroups");
+            Builder.RegisterTypeForNavigation<ToDoItemDetailView, ToDoItemDetailViewModel>("ToDoItemDetail");
         }
     }
 }
