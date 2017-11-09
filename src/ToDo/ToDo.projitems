@@ -17,13 +17,18 @@
     <Compile Include="$(MSBuildThisFileDirectory)Model\ToDoItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Converters\BooleanConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Converters\BooleanToCheckedIconConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Converters\ToDoItemDateCoverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Converters\CreatedDateTimeConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Extensions\DictionaryExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ToDoGroupsViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ToDoItemDetailViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ToDoItemsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Properties\EntryProperties.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\ToDoGroupsView.xaml.cs">
       <DependentUpon>ToDoGroupsView.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\ToDoItemDetailView.xaml.cs">
+      <DependentUpon>ToDoItemDetailView.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\ToDoItemsView.xaml.cs">
@@ -48,6 +53,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\ToDoItemsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\ToDoItemDetailView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

@@ -12,12 +12,12 @@ namespace ToDo.Model
             get { return _Id; }
             set { SetProperty(ref _Id, value); }
         }
-        private DateTimeOffset _ToDoGroupDate;
+        private DateTimeOffset _CreatedDateTime;
 
-        public virtual DateTimeOffset ToDoGroupDate
+        public virtual DateTimeOffset CreatedDateTime
         {
-            get => _ToDoGroupDate;
-            set => SetProperty(ref _ToDoGroupDate, value);
+            get => _CreatedDateTime;
+            set => SetProperty(ref _CreatedDateTime, value);
         }
 
 

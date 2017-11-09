@@ -2,6 +2,7 @@
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using ToDo.DataAccess;
@@ -77,7 +78,7 @@ namespace ToDo.ViewModels
                 {
                     IsBusy = true;
 
-                    ToDoGroup toDoGroup = new ToDoGroup { Name = NewToDoGroupName };
+                    ToDoGroup toDoGroup = new ToDoGroup { Name = NewToDoGroupName , CreatedDateTime = DateTimeOffset.UtcNow };
 
                     await _dbContext.ToDoGroups.AddAsync(toDoGroup);
 
