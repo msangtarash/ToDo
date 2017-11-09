@@ -11,7 +11,7 @@
             <sys:Boolean x:Key="False">False</sys:Boolean>
             <converters:BooleanConverter x:Key="BooleanConverter" />
             <converters:BooleanToCheckedIconConverter x:Key="BooleanToCheckedIconConverter"/>
-            <converters:ToDoItemDateCoverter x:key="ToDoItemDateCoverter"/>
+            <converters:CreatedDateTimeConverter x:Key="CreatedDateTimeConverter"/>
         </ResourceDictionary>
 
     </prism:PrismApplication.Resources>
