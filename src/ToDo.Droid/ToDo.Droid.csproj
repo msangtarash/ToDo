@@ -252,16 +252,7 @@
     <Folder Include="Assets\" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\Xamarin.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\WallPaper.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\Add.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\Add2.png" />
   </ItemGroup>
   <Import Project="..\ToDo\ToDo.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
