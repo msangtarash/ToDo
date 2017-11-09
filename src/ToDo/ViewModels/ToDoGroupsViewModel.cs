@@ -48,11 +48,11 @@ namespace ToDo.ViewModels
             set => SetProperty(ref _CountToDoItems, value);
         }
 
-        public ToDoGroupsViewModel(INavigationService navigationService)
+        public ToDoGroupsViewModel(INavigationService navigationService, ToDoDbContext dbContext)
         {
             _navigationService = navigationService;
 
-            _dbContext = new ToDoDbContext();
+            _dbContext = dbContext;
 
             LoadToDoGroups = new DelegateCommand(async () =>
             {
@@ -114,7 +114,7 @@ namespace ToDo.ViewModels
 
             OpenToDoItems = new DelegateCommand<ToDoGroup>(async (toDoGroup) =>
             {
-                await navigationService.NavigateAsync("/ToDoGroups/Nav/ToDoItems", new Dictionary<string, object>
+                await navigationService.NavigateAsync("Nav/ToDoItems", new Dictionary<string, object>
                 {
                     { "toDoGroupId", toDoGroup.Id }
                 }.ToNavParams());

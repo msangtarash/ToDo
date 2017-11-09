@@ -14,9 +14,9 @@
             <ContentPage.Content>
                 <StackLayout Padding="5,30,5,5">
                     <SearchBar Placeholder="Search ToDo Groups"></SearchBar>
-                    <ListView ItemsSource="{Binding ToDoGroups}" Margin="5" SeparatorVisibility="None" x:Name="List">
+                    <ListView ItemsSource="{Binding ToDoGroups}" Margin="5" SeparatorVisibility="None">
                         <ListView.Behaviors>
-                            <b:EventToCommandBehavior EventName="ItemSelected" EventArgsParameterPath="SelectedItem" Command="{Binding OpenToDoItems}" />
+                            <b:EventToCommandBehavior EventName="ItemTapped" EventArgsParameterPath="Item" Command="{Binding OpenToDoItems}" />
                         </ListView.Behaviors>
                         <ListView.ItemTemplate>
                             <DataTemplate>

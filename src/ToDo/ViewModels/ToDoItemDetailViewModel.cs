@@ -37,9 +37,9 @@ namespace ToDo.ViewModels
             _dbContext.Dispose();
         }
 
-        public ToDoItemDetailViewModel()
+        public ToDoItemDetailViewModel(ToDoDbContext dbContext)
         {
-            _dbContext = new ToDoDbContext();
+            _dbContext = dbContext;
         }
     }
 }

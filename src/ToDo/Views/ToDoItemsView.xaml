@@ -25,7 +25,7 @@
             </StackLayout>
             <ListView ItemsSource="{Binding ToDoItems}">
                 <ListView.Behaviors>
-                    <b:EventToCommandBehavior EventName="ItemSelected" Command="{Binding NavigateToDetail}" EventArgsParameterPath="SelectedItem" />
+                    <b:EventToCommandBehavior EventName="ItemTapped" Command="{Binding NavigateToDetail}" EventArgsParameterPath="Item" />
                 </ListView.Behaviors>
                 <ListView.ItemTemplate>
                     <DataTemplate>

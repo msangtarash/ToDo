@@ -18,7 +18,7 @@ namespace ToDo.ViewModels
 
         private readonly INavigationService _navigationService;
 
-        private int _toDoGroupId;
+        private int? _toDoGroupId;
 
         public virtual DelegateCommand LoadToDoItems { get; set; }
 
@@ -77,7 +77,7 @@ namespace ToDo.ViewModels
 
         private IQueryable<ToDoItem> GetToDoItemsQuery(IQueryable<ToDoItem> toDoItemsBaseQuery)
         {
-            toDoItemsBaseQuery = toDoItemsBaseQuery.Where(toDo => toDo.GroupId == _toDoGroupId);
+            toDoItemsBaseQuery = _toDoGroupId.HasValue ? toDoItemsBaseQuery.Where(toDo => toDo.GroupId == _toDoGroupId) : toDoItemsBaseQuery.Where(toDo => toDo.GroupId == null);
 
             if (LoadAll == false)
                 toDoItemsBaseQuery = toDoItemsBaseQuery.Where(toDo => toDo.IsFinished == false);
@@ -94,11 +94,16 @@ namespace ToDo.ViewModels
 
         public virtual async void OnNavigatedTo(NavigationParameters navigationParams)
         {
-            _toDoGroupId = navigationParams.GetValue<int>("toDoGroupId");
+            if (navigationParams.GetNavigationMode() == NavigationMode.Back)
+                return;
+
+            navigationParams.TryGetValue("toDoGroupId", out int? toDoGroupId);
+
+            _toDoGroupId = toDoGroupId;
 
             LoadToDoItems.Execute();
 
-            GroupName = (await _dbContext.ToDoGroups.FindAsync(_toDoGroupId))?.Name;
+            GroupName = _toDoGroupId.HasValue ? (await _dbContext.ToDoGroups.FindAsync(_toDoGroupId))?.Name : "Non grouped";
         }
 
         public virtual void OnNavigatedFrom(NavigationParameters parameters)
@@ -106,9 +111,9 @@ namespace ToDo.ViewModels
 
         }
 
-        public ToDoItemsViewModel(INavigationService navigationService)
+        public ToDoItemsViewModel(INavigationService navigationService, ToDoDbContext dbContext)
         {
-            _dbContext = new ToDoDbContext();
+            _dbContext = dbContext;
 
             _navigationService = navigationService;
 
