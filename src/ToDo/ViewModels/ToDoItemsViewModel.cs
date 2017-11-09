@@ -4,6 +4,7 @@ using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using ToDo.DataAccess;
@@ -15,6 +16,8 @@ namespace ToDo.ViewModels
     {
         private readonly ToDoDbContext _dbContext;
 
+        private readonly INavigationService _navigationService;
+
         private int _toDoGroupId;
 
         public virtual DelegateCommand LoadToDoItems { get; set; }
@@ -22,6 +25,8 @@ namespace ToDo.ViewModels
         public virtual DelegateCommand<ToDoItem> ToggleToDoItemIsFinished { get; set; }
 
         public virtual DelegateCommand AddToDoItem { get; set; }
+
+        public virtual DelegateCommand<ToDoItem> NavigateToDetail { get; set; }
 
         public virtual DelegateCommand<ToDoItem> DeleteToDoItem { get; set; }
 
@@ -101,9 +106,11 @@ namespace ToDo.ViewModels
 
         }
 
-        public ToDoItemsViewModel()
+        public ToDoItemsViewModel(INavigationService navigationService)
         {
             _dbContext = new ToDoDbContext();
+
+            _navigationService = navigationService;
 
             CurrentDate = DateTime.UtcNow.ToShortDateString();
 
@@ -166,7 +173,7 @@ namespace ToDo.ViewModels
                 {
                     IsBusy = true;
 
-                    ToDoItem toDoItem = new ToDoItem { IsFinished = false, Text = NewToDoText, GroupId = _toDoGroupId , ToDoItemDate = DateTimeOffset.UtcNow};
+                    ToDoItem toDoItem = new ToDoItem { IsFinished = false, Text = NewToDoText, GroupId = _toDoGroupId, CreatedDateTime = DateTimeOffset.UtcNow };
 
                     await _dbContext.ToDoItems.AddAsync(toDoItem);
 
@@ -202,6 +209,14 @@ namespace ToDo.ViewModels
             }, (toDoItem) => !IsBusy);
 
             DeleteToDoItem.ObservesProperty(() => IsBusy);
+
+            NavigateToDetail = new DelegateCommand<ToDoItem>(async (toDoItem) =>
+            {
+                await navigationService.NavigateAsync("ToDoItemDetail", new Dictionary<string, object>
+                {
+                    { "toDoItemId", toDoItem.Id }
+                }.ToNavParams());
+        });
         }
     }
 }
