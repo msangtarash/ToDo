@@ -27,6 +27,7 @@ namespace ToDo.Droid
             base.OnCreate(bundle);
 
             Forms.Init(this, bundle);
+
             MaterialIcons.FormsPlugin.iOS.MaterialIconControls.Init();
 
             LoadApplication(new App(new AndroidInitializer()));

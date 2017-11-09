@@ -3,11 +3,11 @@ using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 using ToDo.Views.Properties;
 
-[assembly: ExportRenderer(typeof(Entry), typeof(ToDoEntryRendere))]
+[assembly: ExportRenderer(typeof(Entry), typeof(ToDoEntryRenderer))]
 
 namespace ToDo.Droid.Renderes
 {
-    public class ToDoEntryRendere : EntryRenderer
+    public class ToDoEntryRenderer : EntryRenderer
     {
         protected override void OnElementChanged(ElementChangedEventArgs<Entry> e)
         {

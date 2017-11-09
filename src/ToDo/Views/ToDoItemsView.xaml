@@ -32,7 +32,7 @@
                         <ViewCell>
                             <StackLayout Orientation="Horizontal">
                                 <Switch IsToggled="{Binding IsFinished, Mode=OneWay}" IsVisible="False">
-                                    <!--<Switch.GestureRecognizers>
+                                <!--<Switch.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding BindingContext.ToggleToDoItemIsFinished, Source={x:Reference Name=ToDoItemsView}}" CommandParameter="{Binding .}" />
                                 </Switch.GestureRecognizers>-->
                                 </Switch>

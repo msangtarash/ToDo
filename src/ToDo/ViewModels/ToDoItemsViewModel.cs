@@ -34,44 +34,44 @@ namespace ToDo.ViewModels
 
         public virtual ObservableCollection<ToDoItem> ToDoItems
         {
-            get { return _ToDoItems; }
-            set { SetProperty(ref _ToDoItems, value); }
+            get => _ToDoItems;
+            set => SetProperty(ref _ToDoItems, value);
         }
 
         private bool _IsBusy;
         public virtual bool IsBusy
         {
-            get { return _IsBusy; }
-            set { SetProperty(ref _IsBusy, value); }
+            get => _IsBusy;
+            set => SetProperty(ref _IsBusy, value);
         }
 
         private string _NewToDoText;
 
         public virtual string NewToDoText
         {
-            get { return _NewToDoText; }
-            set { SetProperty(ref _NewToDoText, value); }
+            get => _NewToDoText;
+            set => SetProperty(ref _NewToDoText, value);
         }
 
         private string _GroupName;
         public virtual string GroupName
         {
-            get { return _GroupName; }
-            set { SetProperty(ref _GroupName, value); }
+            get => _GroupName;
+            set => SetProperty(ref _GroupName, value);
         }
 
         private bool _LoadAll;
         public virtual bool LoadAll
         {
-            get { return _LoadAll; }
-            set { SetProperty(ref _LoadAll, value); }
+            get => _LoadAll;
+            set => SetProperty(ref _LoadAll, value);
         }
 
         private string _CurrentDate;
         public virtual string CurrentDate
         {
-            get { return _CurrentDate; }
-            set { SetProperty(ref _CurrentDate, value); }
+            get => _CurrentDate;
+            set => SetProperty(ref _CurrentDate, value);
         }
 
 
@@ -150,8 +150,6 @@ namespace ToDo.ViewModels
                         ToDoItems.Remove(toDoItem);
 
                     }
-
-
                 }
                 catch
                 {
@@ -216,7 +214,7 @@ namespace ToDo.ViewModels
                 {
                     { "toDoItemId", toDoItem.Id }
                 }.ToNavParams());
-        });
+            });
         }
     }
 }

@@ -29,7 +29,6 @@ namespace ToDo
             Container.RegisterTypeForNavigation<ToDoItemsView, ToDoItemsViewModel>("ToDoItems");
             Container.RegisterTypeForNavigation<ToDoGroupsView, ToDoGroupsViewModel>("ToDoGroups");
             Container.RegisterTypeForNavigation<ToDoItemDetailView, ToDoItemDetailViewModel>("ToDoItemDetail");
-
         }
     }
 }
