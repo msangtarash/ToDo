@@ -2,10 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageTargetFallback>portable-net45+win8+wpa81+wp8</PackageTargetFallback>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Humanizer" Version="2.2.0" />
+    <PackageReference Include="LiveXAML" Version="2.0.2-beta" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.0.0" />
     <PackageReference Include="Prism.Autofac.Forms" Version="7.0.0.168-pre" />
     <PackageReference Include="Xam.FormsPlugin.MaterialIcons" Version="0.0.1-alpha" />

@@ -13,7 +13,7 @@
             </ContentPage.Behaviors>
             <ContentPage.Content>
                 <StackLayout Padding="5,30,5,5">
-                    <SearchBar Placeholder="Search ToDo Groups"></SearchBar>
+                    <SearchBar Placeholder="Search ToDo Groups" />
                     <ListView ItemsSource="{Binding ToDoGroups}" Margin="5" SeparatorVisibility="None">
                         <ListView.Behaviors>
                             <b:EventToCommandBehavior EventName="ItemTapped" EventArgsParameterPath="Item" Command="{Binding OpenToDoItems}" />

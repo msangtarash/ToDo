@@ -46,7 +46,7 @@
                 </ListView.ItemTemplate>
             </ListView>
             <StackLayout Orientation="Horizontal">
-                <Label Text="Load all?" VerticalTextAlignment="Center" />
+                <Label Text="Load all?" VerticalTextAlignment="Center" VerticalOptions="StartAndExpand" />
                 <Switch x:Name="ShowAllSwitch" IsToggled="{Binding LoadAll}" >
                     <Switch.Behaviors>
                         <b:EventToCommandBehavior EventName="Toggled" Command="{Binding LoadToDoItems}"/>
