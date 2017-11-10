@@ -1,12 +1,12 @@
-﻿using ToDo.Droid.Renderes;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 using ToDo.Views.Properties;
 using Android.Content;
+using ToDo.Droid.Codes.Renderes;
 
 [assembly: ExportRenderer(typeof(Entry), typeof(ToDoEntryRenderer))]
 
-namespace ToDo.Droid.Renderes
+namespace ToDo.Droid.Codes.Renderes
 {
     public class ToDoEntryRenderer : EntryRenderer
     {

@@ -1,50 +1,19 @@
 ﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
-using Autofac;
-using Prism.Autofac;
-using System;
-using Xamarin.Forms;
-using Xamarin.Forms.Platform.Android;
+using Bit.ApkUpdateAgent;
 
 namespace ToDo.Droid
 {
     [Activity(Label = "ToDo", Icon = "@drawable/icon", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
-    public class MainActivity : FormsAppCompatActivity
+    public class MainActivity : BitFormsAppCompatActivity
     {
-        static MainActivity()
-        {
-#if DEBUG
-            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
-#endif
-        }
-
         protected override void OnCreate(Bundle bundle)
         {
             TabLayoutResource = Resource.Layout.tabs;
             ToolbarResource = Resource.Layout.toolbar;
 
             base.OnCreate(bundle);
-
-            Forms.Init(this, bundle);
-
-            MaterialIcons.FormsPlugin.iOS.MaterialIconControls.Init();
-
-            LoadApplication(new App(new AndroidInitializer()));
-        }
-
-#if DEBUG
-        private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
-        {
-            
-        }
-#endif
-    }
-
-    public class AndroidInitializer : IPlatformInitializer
-    {
-        public void RegisterTypes(ContainerBuilder container)
-        {
         }
     }
 }

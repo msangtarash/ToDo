@@ -5,6 +5,10 @@
     <PackageTargetFallback>portable-net45+win8+wpa81+wp8</PackageTargetFallback>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <OutputPath>bin\</OutputPath>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="Humanizer" Version="2.2.0" />
     <PackageReference Include="LiveXAML" Version="2.0.2-beta" />
