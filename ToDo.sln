@@ -4,10 +4,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 15.0.27004.2006
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDo.Droid", "src\ToDo.Droid\ToDo.Droid.csproj", "{1ED0679A-F7D4-410C-B78B-2DD6A822B739}"
-	ProjectSection(ProjectDependencies) = postProject
-		{E954D74F-3CB5-482D-B2E6-656EE0694658} = {E954D74F-3CB5-482D-B2E6-656EE0694658}
-		{95D414E3-B93A-4F6A-B202-4EB69EF33635} = {95D414E3-B93A-4F6A-B202-4EB69EF33635}
-	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDo", "src\ToDo\ToDo.csproj", "{E954D74F-3CB5-482D-B2E6-656EE0694658}"
 EndProject

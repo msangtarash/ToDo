@@ -130,16 +130,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ActivityConfigurationManager.cs" />
     <Compile Include="ToDoInitializer.cs" />
     <Compile Include="Renderes\ToDoEntryRenderer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Bit.ApkUpdateAgent\Bit.ApkUpdateAgent.csproj">
-      <Project>{c9b5d7f9-7a71-4a8b-a1cd-06f8d7dfd6f2}</Project>
-      <Name>Bit.ApkUpdateAgent</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ToDo\ToDo.csproj">
       <Project>{e954d74f-3cb5-482d-b2e6-656ee0694658}</Project>
       <Name>ToDo</Name>

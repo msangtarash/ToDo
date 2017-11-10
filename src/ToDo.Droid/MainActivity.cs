@@ -1,12 +1,14 @@
 ﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
-using Bit.ApkUpdateAgent;
+using ToDo.Droid.Codes;
+using Xamarin.Forms;
+using Xamarin.Forms.Platform.Android;
 
 namespace ToDo.Droid
 {
     [Activity(Label = "ToDo", Icon = "@drawable/icon", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
-    public class MainActivity : BitFormsAppCompatActivity
+    public class MainActivity : FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle bundle)
         {
@@ -14,6 +16,12 @@ namespace ToDo.Droid
             ToolbarResource = Resource.Layout.toolbar;
 
             base.OnCreate(bundle);
+
+            Forms.Init(this, bundle);
+
+            MaterialIcons.FormsPlugin.iOS.MaterialIconControls.Init();
+
+            LoadApplication(new App(new ToDoInitializer()));
         }
     }
 }
