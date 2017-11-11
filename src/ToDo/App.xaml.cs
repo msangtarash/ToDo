@@ -27,9 +27,10 @@ namespace ToDo
         protected override void RegisterTypes()
         {
             Builder.RegisterTypeForNavigation<NavigationPage>("Nav");
-            Builder.RegisterTypeForNavigation<ToDoGroupsView, ToDoGroupsViewModel>("ToDoGroups");
+            Builder.RegisterTypeForNavigation<ToDoGroupsView,ToDoGroupsViewModel>("ToDoGroups");
             Builder.RegisterTypeForNavigation<ToDoItemsView, ToDoItemsViewModel>("ToDoItems");
             Builder.RegisterTypeForNavigation<ToDoItemDetailView, ToDoItemDetailViewModel>("ToDoItemDetail");
+            Builder.RegisterTypeForNavigation<SearchView, SearchViewModel>("Search");
             Builder.RegisterType<ToDoDbContext>();
         }
     }

@@ -5,6 +5,7 @@ using Prism.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using ToDo.DataAccess;
 using ToDo.Model;
 
@@ -18,6 +19,7 @@ namespace ToDo.ViewModels
         public DelegateCommand LoadToDoGroups { get; set; }
         public DelegateCommand AddToDoGroup { get; set; }
         public DelegateCommand<ToDoGroup> DeleteToDoGroup { get; set; }
+        public DelegateCommand OpenSearchView { get; set; }
         public DelegateCommand<ToDoGroup> OpenToDoItems { get; set; }
 
         private ObservableCollection<ToDoGroup> _ToDoGroups;
@@ -63,6 +65,8 @@ namespace ToDo.ViewModels
                     await _dbContext.Database.EnsureCreatedAsync();
 
                     await _dbContext.ToDoGroups.LoadAsync();
+
+                    // var TodoGroups = await _dbContext.ToDoGroups.Select(toDoGroup => new { toDoGroup.Id, toDoGroup.Name, ToDoItemsCount = toDoGroup.ToDoItems.Count() }).ToListAsync();
 
                     ToDoGroups = new ObservableCollection<ToDoGroup>(_dbContext.ToDoGroups.Local);
                 }
@@ -119,8 +123,12 @@ namespace ToDo.ViewModels
                     { "toDoGroupId", toDoGroup.Id }
                 }.ToNavParams());
             });
-        }
 
+            OpenSearchView = new DelegateCommand(async () =>
+            {
+                await navigationService.NavigateAsync("Search");
+            });
+        }
         public virtual void Destroy()
         {
             _dbContext.Dispose();
