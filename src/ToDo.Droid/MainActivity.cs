@@ -2,7 +2,10 @@
 using Android.Content.PM;
 using Android.OS;
 using Autofac;
+using FormsPlugin.Iconize.Droid;
 using ImageCircle.Forms.Plugin.Droid;
+using Plugin.Iconize;
+using Plugin.Iconize.Fonts;
 using Prism.Autofac;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
@@ -21,7 +24,9 @@ namespace ToDo.Droid
 
             Forms.Init(this, bundle);
 
-            MaterialIcons.FormsPlugin.iOS.MaterialIconControls.Init();
+            IconControls.Init(Resource.Id.toolbar);
+
+            Iconize.With(new FontAwesomeModule());
 
             ImageCircleRenderer.Init();
 

@@ -1,8 +1,8 @@
-﻿using Xamarin.Forms;
-using Xamarin.Forms.Platform.Android;
-using ToDo.Views.Properties;
-using Android.Content;
+﻿using Android.Content;
 using ToDo.Droid.Renderes;
+using ToDo.Views.Properties;
+using Xamarin.Forms;
+using Xamarin.Forms.Platform.Android;
 
 [assembly: ExportRenderer(typeof(Entry), typeof(ToDoEntryRenderer))]
 
