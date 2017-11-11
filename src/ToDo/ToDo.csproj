@@ -11,11 +11,12 @@
 
   <ItemGroup>
     <PackageReference Include="Humanizer" Version="2.2.0" />
-    <PackageReference Include="LiveXAML" Version="2.0.2-beta" />
+    <PackageReference Include="LiveXAML" Version="2.0.8-beta" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.0.0" />
     <PackageReference Include="Prism.Autofac.Forms" Version="7.0.0.168-pre" />
-    <PackageReference Include="Xam.FormsPlugin.MaterialIcons" Version="0.0.1-alpha" />
-    <PackageReference Include="Xamarin.Forms" Version="2.5.0.19271-pre2" />
+    <PackageReference Include="Xam.FormsPlugin.Iconize" Version="1.0.10" />
+    <PackageReference Include="Xam.Plugin.Iconize" Version="1.0.10" />
+    <PackageReference Include="Xamarin.Forms" Version="2.5.0.75255-pre3" />
   </ItemGroup>
 
 </Project>

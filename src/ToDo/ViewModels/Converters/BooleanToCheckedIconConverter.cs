@@ -8,9 +8,9 @@ namespace ToDo.ViewModels.Converters
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             if ((bool)value == false)
-                return MaterialIcons.FormsPlugin.Abstractions.MaterialIcons.ic_check_box_outline_blank;
+                return "fa-circle-o";
             else
-                return MaterialIcons.FormsPlugin.Abstractions.MaterialIcons.ic_check_box;
+                return "fa-check-circle";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
