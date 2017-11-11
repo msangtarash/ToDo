@@ -3,7 +3,7 @@
                   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                   x:Class="ToDo.Views.ToDoGroupsView"
                   xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
-                  xmlns:mi="clr-namespace:MaterialIcons.FormsPlugin.Abstractions;assembly=MaterialIcons.FormsPlugin.Abstractions"
+                  xmlns:iconize="clr-namespace:FormsPlugin.Iconize;assembly=FormsPlugin.Iconize"
                   xmlns:views="clr-namespace:ToDo.Views"
                   Title="To do groups" x:Name="ToDoGroupsView">
     <MasterDetailPage.Master >
@@ -33,7 +33,7 @@
                         </ListView.ItemTemplate>
                     </ListView>
                     <StackLayout  Orientation="Horizontal">
-                        <mi:IconButton Command="{Binding AddToDoGroup}"  HorizontalOptions="Start" Icon="ic_add_circle_outline" TextColor="Gray" FontSize="25" WidthRequest="50" BackgroundColor="White"/>
+                        <iconize:IconButton Text="fa-plus-circle" BackgroundColor="Transparent" Command="{Binding AddToDoGroup}"  HorizontalOptions="Start" TextColor="Gray" FontSize="25" WidthRequest="50" />
                         <Entry Text="{Binding NewToDoGroupName}"  Placeholder="New to do group name" />
                     </StackLayout>
                 </StackLayout>
