@@ -11,11 +11,11 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
-        <Grid >
+        <Grid>
             <Image Source="WallPaper.jpg" Aspect="AspectFill" />
-            <StackLayout VerticalOptions="EndAndExpand" Margin="20" Orientation="Vertical">
-                <Label Text="{Binding GroupName}" FontSize="32"/>
-                <Label Text="{Binding CurrentDate}" Font="25,Bold" />
+            <StackLayout Orientation="Vertical">
+                <Label Text="{Binding GroupName}" VerticalOptions="EndAndExpand" FontSize="32" Margin="20" TextColor="White"/>
+                <Label Text="{Binding CurrentDate}" VerticalOptions="EndAndExpand" Font="25,Bold" Margin="20" TextColor="White" />
             </StackLayout>
         </Grid>
         <StackLayout Padding="10" Grid.Row="1">
@@ -23,22 +23,22 @@
                 <mi:IconButton Command="{Binding AddToDoItem}" Icon="ic_add_circle_outline" FontSize="30" TextColor="Gray" WidthRequest="50" BackgroundColor="White"/>
                 <Entry Placeholder="New to do item text..." Text="{Binding NewToDoText}" HorizontalOptions="FillAndExpand" />
             </StackLayout>
-            <ListView ItemsSource="{Binding ToDoItems}">
+            <ListView ItemsSource="{Binding ToDoItems}" SeparatorVisibility="None">
                 <ListView.Behaviors>
                     <b:EventToCommandBehavior EventName="ItemTapped" Command="{Binding NavigateToDetail}" EventArgsParameterPath="Item" />
                 </ListView.Behaviors>
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Orientation="Horizontal">
+                            <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
                                 <Switch IsToggled="{Binding IsFinished, Mode=OneWay}" IsVisible="False">
                                 <!--<Switch.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding BindingContext.ToggleToDoItemIsFinished, Source={x:Reference Name=ToDoItemsView}}" CommandParameter="{Binding .}" />
                                 </Switch.GestureRecognizers>-->
                                 </Switch>
-                                <mi:IconButton Command="{Binding BindingContext.ToggleToDoItemIsFinished, Source={x:Reference Name=ToDoItemsView}}" CommandParameter="{Binding .}" Icon="{Binding IsFinished, Converter={StaticResource BooleanToCheckedIconConverter}}" FontSize="25" TextColor="#2196f3" WidthRequest="50" BackgroundColor="Transparent" />
-                                <Label Text="{Binding Text}" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand" />
-                                <Label Text="{Binding CreatedDateTime, Converter={StaticResource CreatedDateTimeConverter}}"/>
+                                <mi:IconButton Command="{Binding BindingContext.ToggleToDoItemIsFinished, Source={x:Reference Name=ToDoItemsView}}" CommandParameter="{Binding .}" Icon="{Binding IsFinished, Converter={StaticResource BooleanToCheckedIconConverter}}" FontSize="25" BorderWidth="0" TextColor="#2196f3" WidthRequest="50" BackgroundColor="Transparent" />
+                                <Label Text="{Binding Text}"  HorizontalOptions="StartAndExpand" VerticalTextAlignment="Center" />
+                                <Label Text="{Binding CreatedDateTime, Converter={StaticResource CreatedDateTimeConverter}}" VerticalTextAlignment="Center"/>
                                 <mi:IconButton BorderColor="Black" TextColor="Red" Command="{Binding BindingContext.DeleteToDoItem, Source={x:Reference Name=ToDoItemsView}}" CommandParameter="{Binding .}" Icon="ic_delete"  FontSize="20" WidthRequest="50" />
                             </StackLayout>
                         </ViewCell>

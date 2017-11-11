@@ -2,6 +2,7 @@
 using Android.Content.PM;
 using Android.OS;
 using Autofac;
+using ImageCircle.Forms.Plugin.Droid;
 using Prism.Autofac;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
@@ -21,6 +22,8 @@ namespace ToDo.Droid
             Forms.Init(this, bundle);
 
             MaterialIcons.FormsPlugin.iOS.MaterialIconControls.Init();
+
+            ImageCircleRenderer.Init();
 
             LoadApplication(new App(new ToDoInitializer()));
         }

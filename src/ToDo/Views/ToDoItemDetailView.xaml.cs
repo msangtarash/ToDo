@@ -6,7 +6,7 @@ namespace ToDo.Views
 	{
 		public ToDoItemDetailView ()
 		{
-			InitializeComponent ();
+            InitializeComponent ();
 		}
 	}
 }

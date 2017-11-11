@@ -10,12 +10,28 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="ViewModels\SearchViewModel.cs" />
+    <Compile Remove="Views\SearchView.xaml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Views\SearchView.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Humanizer" Version="2.2.0" />
     <PackageReference Include="LiveXAML" Version="2.0.2-beta" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.0.0" />
     <PackageReference Include="Prism.Autofac.Forms" Version="7.0.0.168-pre" />
     <PackageReference Include="Xam.FormsPlugin.MaterialIcons" Version="0.0.1-alpha" />
+    <PackageReference Include="Xam.Plugins.Forms.ImageCircle" Version="1.8.1" />
     <PackageReference Include="Xamarin.Forms" Version="2.5.0.19271-pre2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\ToDoGroupsView.xaml.cs">
+      <DependentUpon>ToDoGroupsView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
 </Project>
