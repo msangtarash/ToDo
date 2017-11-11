@@ -23,36 +23,36 @@ namespace ToDo.ViewModels
         private ObservableCollection<ToDoGroup> _ToDoGroups;
         public ObservableCollection<ToDoGroup> ToDoGroups
         {
-            get { return _ToDoGroups; }
-            set { SetProperty(ref _ToDoGroups, value); }
+            get => _ToDoGroups;
+            set => SetProperty(ref _ToDoGroups, value);
         }
 
         private bool _IsBusy;
         public bool IsBusy
         {
-            get { return _IsBusy; }
-            set { SetProperty(ref _IsBusy, value); }
+            get => _IsBusy;
+            set => SetProperty(ref _IsBusy, value);
         }
 
         private string _NewToDoGroupName;
         public string NewToDoGroupName
         {
-            get { return _NewToDoGroupName; }
-            set { SetProperty(ref _NewToDoGroupName, value); }
+            get => _NewToDoGroupName;
+            set => SetProperty(ref _NewToDoGroupName, value);
         }
 
         private string _CountToDoItems;
         public virtual string CountToDoItems
         {
-            get { return _CountToDoItems; }
-            set { SetProperty(ref _CountToDoItems, value); }
+            get => _CountToDoItems;
+            set => SetProperty(ref _CountToDoItems, value);
         }
 
-        public ToDoGroupsViewModel(INavigationService navigationService)
+        public ToDoGroupsViewModel(INavigationService navigationService, ToDoDbContext dbContext)
         {
             _navigationService = navigationService;
 
-            _dbContext = new ToDoDbContext();
+            _dbContext = dbContext;
 
             LoadToDoGroups = new DelegateCommand(async () =>
             {
@@ -78,7 +78,7 @@ namespace ToDo.ViewModels
                 {
                     IsBusy = true;
 
-                    ToDoGroup toDoGroup = new ToDoGroup { Name = NewToDoGroupName , CreatedDateTime = DateTimeOffset.UtcNow };
+                    ToDoGroup toDoGroup = new ToDoGroup { Name = NewToDoGroupName, CreatedDateTime = DateTimeOffset.UtcNow };
 
                     await _dbContext.ToDoGroups.AddAsync(toDoGroup);
 
@@ -114,7 +114,7 @@ namespace ToDo.ViewModels
 
             OpenToDoItems = new DelegateCommand<ToDoGroup>(async (toDoGroup) =>
             {
-                await navigationService.NavigateAsync("/ToDoGroups/Nav/ToDoItems", new Dictionary<string, object>
+                await navigationService.NavigateAsync("Nav/ToDoItems", new Dictionary<string, object>
                 {
                     { "toDoGroupId", toDoGroup.Id }
                 }.ToNavParams());

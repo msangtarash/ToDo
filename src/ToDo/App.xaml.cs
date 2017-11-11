@@ -1,5 +1,6 @@
-﻿using Prism.Autofac;
-using Prism.Autofac.Forms;
+﻿using Autofac;
+using Prism.Autofac;
+using ToDo.DataAccess;
 using ToDo.ViewModels;
 using ToDo.Views;
 using Xamarin.Forms;
@@ -20,16 +21,16 @@ namespace ToDo
         {
             InitializeComponent();
 
-            NavigationService.NavigateAsync("ToDoGroups/ToDoItems");
+            NavigationService.NavigateAsync("ToDoGroups/Nav/ToDoItems");
         }
-        
+
         protected override void RegisterTypes()
         {
-            Container.RegisterTypeForNavigation<NavigationPage>("Nav");
-            Container.RegisterTypeForNavigation<ToDoItemsView, ToDoItemsViewModel>("ToDoItems");
-            Container.RegisterTypeForNavigation<ToDoGroupsView, ToDoGroupsViewModel>("ToDoGroups");
-            Container.RegisterTypeForNavigation<ToDoItemDetailView, ToDoItemDetailViewModel>("ToDoItemDetail");
-
+            Builder.RegisterTypeForNavigation<NavigationPage>("Nav");
+            Builder.RegisterTypeForNavigation<ToDoGroupsView, ToDoGroupsViewModel>("ToDoGroups");
+            Builder.RegisterTypeForNavigation<ToDoItemsView, ToDoItemsViewModel>("ToDoItems");
+            Builder.RegisterTypeForNavigation<ToDoItemDetailView, ToDoItemDetailViewModel>("ToDoItemDetail");
+            Builder.RegisterType<ToDoDbContext>();
         }
     }
 }

@@ -10,7 +10,7 @@ namespace ToDo.DataAccess
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string dbFileName = "toDoDb-V6.db";
+            string dbFileName = "toDoDb-V1.db";
 
             if (Device.RuntimePlatform != Device.UWP)
                 dbFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), dbFileName);

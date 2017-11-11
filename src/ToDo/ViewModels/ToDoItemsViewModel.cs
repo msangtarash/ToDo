@@ -18,7 +18,7 @@ namespace ToDo.ViewModels
 
         private readonly INavigationService _navigationService;
 
-        private int _toDoGroupId;
+        private int? _toDoGroupId;
 
         public virtual DelegateCommand LoadToDoItems { get; set; }
 
@@ -34,50 +34,50 @@ namespace ToDo.ViewModels
 
         public virtual ObservableCollection<ToDoItem> ToDoItems
         {
-            get { return _ToDoItems; }
-            set { SetProperty(ref _ToDoItems, value); }
+            get => _ToDoItems;
+            set => SetProperty(ref _ToDoItems, value);
         }
 
         private bool _IsBusy;
         public virtual bool IsBusy
         {
-            get { return _IsBusy; }
-            set { SetProperty(ref _IsBusy, value); }
+            get => _IsBusy;
+            set => SetProperty(ref _IsBusy, value);
         }
 
         private string _NewToDoText;
 
         public virtual string NewToDoText
         {
-            get { return _NewToDoText; }
-            set { SetProperty(ref _NewToDoText, value); }
+            get => _NewToDoText;
+            set => SetProperty(ref _NewToDoText, value);
         }
 
         private string _GroupName;
         public virtual string GroupName
         {
-            get { return _GroupName; }
-            set { SetProperty(ref _GroupName, value); }
+            get => _GroupName;
+            set => SetProperty(ref _GroupName, value);
         }
 
         private bool _LoadAll;
         public virtual bool LoadAll
         {
-            get { return _LoadAll; }
-            set { SetProperty(ref _LoadAll, value); }
+            get => _LoadAll;
+            set => SetProperty(ref _LoadAll, value);
         }
 
         private string _CurrentDate;
         public virtual string CurrentDate
         {
-            get { return _CurrentDate; }
-            set { SetProperty(ref _CurrentDate, value); }
+            get => _CurrentDate;
+            set => SetProperty(ref _CurrentDate, value);
         }
 
 
         private IQueryable<ToDoItem> GetToDoItemsQuery(IQueryable<ToDoItem> toDoItemsBaseQuery)
         {
-            toDoItemsBaseQuery = toDoItemsBaseQuery.Where(toDo => toDo.GroupId == _toDoGroupId);
+            toDoItemsBaseQuery = _toDoGroupId.HasValue ? toDoItemsBaseQuery.Where(toDo => toDo.GroupId == _toDoGroupId) : toDoItemsBaseQuery.Where(toDo => toDo.GroupId == null);
 
             if (LoadAll == false)
                 toDoItemsBaseQuery = toDoItemsBaseQuery.Where(toDo => toDo.IsFinished == false);
@@ -94,11 +94,16 @@ namespace ToDo.ViewModels
 
         public virtual async void OnNavigatedTo(NavigationParameters navigationParams)
         {
-            _toDoGroupId = navigationParams.GetValue<int>("toDoGroupId");
+            if (navigationParams.GetNavigationMode() == NavigationMode.Back)
+                return;
+
+            navigationParams.TryGetValue("toDoGroupId", out int? toDoGroupId);
+
+            _toDoGroupId = toDoGroupId;
 
             LoadToDoItems.Execute();
 
-            GroupName = (await _dbContext.ToDoGroups.FindAsync(_toDoGroupId))?.Name;
+            GroupName = _toDoGroupId.HasValue ? (await _dbContext.ToDoGroups.FindAsync(_toDoGroupId))?.Name : "Non grouped";
         }
 
         public virtual void OnNavigatedFrom(NavigationParameters parameters)
@@ -106,9 +111,9 @@ namespace ToDo.ViewModels
 
         }
 
-        public ToDoItemsViewModel(INavigationService navigationService)
+        public ToDoItemsViewModel(INavigationService navigationService, ToDoDbContext dbContext)
         {
-            _dbContext = new ToDoDbContext();
+            _dbContext = dbContext;
 
             _navigationService = navigationService;
 
@@ -150,8 +155,6 @@ namespace ToDo.ViewModels
                         ToDoItems.Remove(toDoItem);
 
                     }
-
-
                 }
                 catch
                 {
@@ -216,7 +219,7 @@ namespace ToDo.ViewModels
                 {
                     { "toDoItemId", toDoItem.Id }
                 }.ToNavParams());
-        });
+            });
         }
     }
 }

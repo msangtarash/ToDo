@@ -16,10 +16,9 @@ namespace ToDo.ViewModels
         private string _ToDoItemName;
         public virtual string ToDoItemName
         {
-            get { return _ToDoItemName; }
-            set { SetProperty(ref _ToDoItemName, value); }
+            get => _ToDoItemName;
+            set => SetProperty(ref _ToDoItemName, value);
         }
-
 
         public virtual async void OnNavigatedTo(NavigationParameters navigationParams)
         {
@@ -38,9 +37,9 @@ namespace ToDo.ViewModels
             _dbContext.Dispose();
         }
 
-        public ToDoItemDetailViewModel()
+        public ToDoItemDetailViewModel(ToDoDbContext dbContext)
         {
-            _dbContext = new ToDoDbContext();
+            _dbContext = dbContext;
         }
     }
 }

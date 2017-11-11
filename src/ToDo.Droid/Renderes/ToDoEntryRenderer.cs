@@ -1,14 +1,21 @@
-﻿using ToDo.Droid.Renderes;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 using ToDo.Views.Properties;
+using Android.Content;
+using ToDo.Droid.Renderes;
 
-[assembly: ExportRenderer(typeof(Entry), typeof(ToDoEntryRendere))]
+[assembly: ExportRenderer(typeof(Entry), typeof(ToDoEntryRenderer))]
 
 namespace ToDo.Droid.Renderes
 {
-    public class ToDoEntryRendere : EntryRenderer
+    public class ToDoEntryRenderer : EntryRenderer
     {
+        public ToDoEntryRenderer(Context context)
+            : base(context)
+        {
+
+        }
+
         protected override void OnElementChanged(ElementChangedEventArgs<Entry> e)
         {
             base.OnElementChanged(e);
