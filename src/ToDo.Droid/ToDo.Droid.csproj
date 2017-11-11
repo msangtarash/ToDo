@@ -35,12 +35,12 @@
     <DefineConstants>TRACE;DEBUG;Android</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
-    <AndroidLinkMode>SdkOnly</AndroidLinkMode>
+    <AndroidUseSharedRuntime>true</AndroidUseSharedRuntime>
+    <AndroidLinkMode>None</AndroidLinkMode>
     <AndroidSupportedAbis>x86_64</AndroidSupportedAbis>
     <AndroidEnableMultiDex>false</AndroidEnableMultiDex>
     <EnableProguard>false</EnableProguard>
-    <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
+    <EmbedAssembliesIntoApk>false</EmbedAssembliesIntoApk>
     <AndroidLinkSkip>
     </AndroidLinkSkip>
   </PropertyGroup>
@@ -235,6 +235,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
+    <Compile Include="Renderes\ToDoEntryRenderer.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -275,10 +276,6 @@
     <AndroidResource Include="Resources\values-v21\styles.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ToDo.Droid.Codes\ToDo.Droid.Codes.csproj">
-      <Project>{95d414e3-b93a-4f6a-b202-4eb69ef33635}</Project>
-      <Name>ToDo.Droid.Codes</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ToDo\ToDo.csproj">
       <Project>{e954d74f-3cb5-482d-b2e6-656ee0694658}</Project>
       <Name>ToDo</Name>

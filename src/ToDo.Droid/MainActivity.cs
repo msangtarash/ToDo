@@ -1,7 +1,8 @@
 ﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
-using ToDo.Droid.Codes;
+using Autofac;
+using Prism.Autofac;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
@@ -22,6 +23,14 @@ namespace ToDo.Droid
             MaterialIcons.FormsPlugin.iOS.MaterialIconControls.Init();
 
             LoadApplication(new App(new ToDoInitializer()));
+        }
+    }
+
+    public class ToDoInitializer : IPlatformInitializer
+    {
+        public void RegisterTypes(ContainerBuilder container)
+        {
+
         }
     }
 }
