@@ -30,6 +30,13 @@ namespace ToDo.Effects
 
             if (((bool)newValue) == true)
                 entry.Effects.Add(new HideEntryUnderlineEffect());
+            else
+            {
+                HideEntryUnderlineEffect effect = entry.Effects.OfType<HideEntryUnderlineEffect>().FirstOrDefault();
+
+                if (effect != null)
+                    entry.Effects.Remove(effect);
+            }
         }
     }
 }

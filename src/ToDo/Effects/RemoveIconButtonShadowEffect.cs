@@ -31,6 +31,13 @@ namespace ToDo.Effects
 
             if (((bool)newValue) == true)
                 iconButton.Effects.Add(new RemoveIconButtonShadowEffect());
+            else
+            {
+                RemoveIconButtonShadowEffect effect = iconButton.Effects.OfType<RemoveIconButtonShadowEffect>().FirstOrDefault();
+
+                if (effect != null)
+                    iconButton.Effects.Remove(effect);
+            }
         }
     }
 }
