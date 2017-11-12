@@ -26,7 +26,8 @@ namespace ToDo.DataAccess
                 .HasOne(toDo => toDo.Group)
                 .WithMany(toDoGroup => toDoGroup.ToDoItems)
                 .HasForeignKey(toDo => toDo.GroupId)
-                .IsRequired(required: false);
+                .IsRequired(required: false)
+                .OnDelete(DeleteBehavior.SetNull);
 
             base.OnModelCreating(modelBuilder);
         }

@@ -1,6 +1,7 @@
 ﻿using Prism.Mvvm;
 using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ToDo.Model
 {
@@ -34,6 +35,15 @@ namespace ToDo.Model
         {
             get => _ToDoItems;
             set => SetProperty(ref _ToDoItems, value);
+        }
+
+        private int _ToDoItemsCount;
+
+        [NotMapped]
+        public virtual int ActiveToDoItemsCount
+        {
+            get => _ToDoItemsCount;
+            set => SetProperty(ref _ToDoItemsCount, value);
         }
     }
 }

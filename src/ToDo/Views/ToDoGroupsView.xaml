@@ -52,7 +52,7 @@
                         </ListView.Behaviors>
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <TextCell Text="{Binding Name}">
+                                <TextCell Detail="{Binding ActiveToDoItemsCount}" Text="{Binding Name}">
                                     <TextCell.ContextActions>
                                         <MenuItem
                                             Command="{Binding BindingContext.DeleteToDoGroup, Source={x:Reference Name=ToDoGroupsView}}"

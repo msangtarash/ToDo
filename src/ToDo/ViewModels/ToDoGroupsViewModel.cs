@@ -57,11 +57,20 @@ namespace ToDo.ViewModels
 
                     await _dbContext.Database.EnsureCreatedAsync();
 
-                    await _dbContext.ToDoGroups.LoadAsync();
+                    foreach (ToDoGroup toDoGroup in await _dbContext.ToDoGroups
+                        .Select(tdG => new ToDoGroup
+                        {
+                            Id = tdG.Id,
+                            Name = tdG.Name,
+                            CreatedDateTime = tdG.CreatedDateTime,
+                            ActiveToDoItemsCount = tdG.ToDoItems.Count(toDoItem => toDoItem.IsFinished == false)
+                        })
+                        .ToArrayAsync())
+                    {
+                        _dbContext.Attach(toDoGroup);
+                    }
 
-                    // var TodoGroups = await _dbContext.ToDoGroups.Select(toDoGroup => new { toDoGroup.Id, toDoGroup.Name, ToDoItemsCount = toDoGroup.ToDoItems.Count() }).ToListAsync();
-
-                    ToDoGroups = new ObservableCollection<ToDoGroup>(_dbContext.ToDoGroups.Local);
+                    ToDoGroups = _dbContext.ToDoGroups.Local.ToObservableCollection();
                 }
                 finally
                 {
@@ -81,8 +90,6 @@ namespace ToDo.ViewModels
 
                     await _dbContext.SaveChangesAsync();
 
-                    ToDoGroups.Add(toDoGroup);
-
                     NewToDoGroupName = "";
                 }
                 finally
@@ -99,9 +106,8 @@ namespace ToDo.ViewModels
                 try
                 {
                     IsBusy = true;
-                    _dbContext.Entry(toDoGroup).State = EntityState.Deleted;
+                    _dbContext.Remove(toDoGroup);
                     await _dbContext.SaveChangesAsync();
-                    ToDoGroups.Remove(toDoGroup);
                 }
                 finally
                 {
