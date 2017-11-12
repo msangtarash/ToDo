@@ -1,58 +1,108 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
-             xmlns:iconize="clr-namespace:FormsPlugin.Iconize;assembly=FormsPlugin.Iconize"
-             xmlns:views="clr-namespace:ToDo.Views"
-             x:Class="ToDo.Views.ToDoItemsView"
-             x:Name="ToDoItemsView" Title="{Binding GroupName}">
-    <Grid CompressedLayout.IsHeadless="True">
+<ContentPage
+    x:Class="ToDo.Views.ToDoItemsView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
+    xmlns:iconize="clr-namespace:FormsPlugin.Iconize;assembly=FormsPlugin.Iconize"
+    xmlns:views="clr-namespace:ToDo.Views"
+    x:Name="ToDoItemsView"
+    Title="{Binding GroupName}">
+    <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="2*" />
         </Grid.RowDefinitions>
-        <Grid CompressedLayout.IsHeadless="True">
-            <Image Source="WallPaper.jpg" Aspect="AspectFill" />
-            <StackLayout Orientation="Vertical">
-                <Label Text="{Binding GroupName}" VerticalOptions="EndAndExpand" FontSize="32" Margin="20" TextColor="White"/>
-                <Label Text="{Binding CurrentDate}" VerticalOptions="EndAndExpand" Font="25,Bold" Margin="20" TextColor="White" />
+        <Grid>
+            <Image Aspect="AspectFill" Source="WallPaper.jpg" />
+            <StackLayout CompressedLayout.IsHeadless="False" Orientation="Vertical">
+                <Label
+                    Margin="20"
+                    FontSize="32"
+                    Text="{Binding GroupName}"
+                    TextColor="White"
+                    VerticalOptions="EndAndExpand" />
+                <Label
+                    Margin="20"
+                    Font="25,Bold"
+                    Text="{Binding CurrentDate}"
+                    TextColor="White"
+                    VerticalOptions="EndAndExpand" />
             </StackLayout>
         </Grid>
-        <StackLayout Padding="10" Grid.Row="1">
-            <StackLayout Orientation="Horizontal" CompressedLayout.IsHeadless="True">
-                <iconize:IconButton Text="fa-plus-circle" BackgroundColor="Transparent" Command="{Binding AddToDoItem}" HorizontalOptions="Start" TextColor="Gray" FontSize="30" WidthRequest="50" />
-                <Entry Placeholder="New to do item text..." Text="{Binding NewToDoText}" HorizontalOptions="FillAndExpand" />
+        <StackLayout
+            Grid.Row="1"
+            Padding="10"
+            CompressedLayout.IsHeadless="False">
+            <StackLayout Orientation="Horizontal">
+                <iconize:IconButton
+                    BackgroundColor="Transparent"
+                    Command="{Binding AddToDoItem}"
+                    FontSize="30"
+                    HorizontalOptions="Start"
+                    Text="fa-plus-circle"
+                    TextColor="Gray"
+                    WidthRequest="50" />
+                <Entry
+                    HorizontalOptions="FillAndExpand"
+                    Placeholder="New to do item text..."
+                    Text="{Binding NewToDoText}" />
             </StackLayout>
             <ListView ItemsSource="{Binding ToDoItems}" SeparatorVisibility="None">
                 <x:Arguments>
                     <ListViewCachingStrategy>RecycleElementAndDataTemplate</ListViewCachingStrategy>
                 </x:Arguments>
                 <ListView.Behaviors>
-                    <b:EventToCommandBehavior EventName="ItemTapped" Command="{Binding NavigateToDetail}" EventArgsParameterPath="Item" />
+                    <b:EventToCommandBehavior
+                        Command="{Binding NavigateToDetail}"
+                        EventArgsParameterPath="Item"
+                        EventName="ItemTapped" />
                 </ListView.Behaviors>
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" CompressedLayout.IsHeadless="True">
+                            <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
                                 <Switch IsToggled="{Binding IsFinished, Mode=OneWay}" IsVisible="False">
-                                <!--<Switch.GestureRecognizers>
+                                    <!--<Switch.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding BindingContext.ToggleToDoItemIsFinished, Source={x:Reference Name=ToDoItemsView}}" CommandParameter="{Binding .}" />
                                 </Switch.GestureRecognizers>-->
                                 </Switch>
-                                <iconize:IconButton Text="{Binding IsFinished, Converter={StaticResource BooleanToCheckedIconConverter}}" BackgroundColor="Transparent" Command="{Binding BindingContext.ToggleToDoItemIsFinished, Source={x:Reference Name=ToDoItemsView}}" CommandParameter="{Binding .}" HorizontalOptions="Start" TextColor="#2196f3" FontSize="20" WidthRequest="50" />
-                                <Label Text="{Binding Text}" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand" />
-                                <Label Text="{Binding CreatedDateTime, Converter={StaticResource CreatedDateTimeConverter}}"/>
-                                <iconize:IconButton Text="fa-trash-o" BackgroundColor="Transparent" Command="{Binding BindingContext.DeleteToDoItem, Source={x:Reference Name=ToDoItemsView}}" CommandParameter="{Binding .}" HorizontalOptions="Start" TextColor="Gray" FontSize="20" WidthRequest="50" />
+                                <iconize:IconButton
+                                    BackgroundColor="Transparent"
+                                    Command="{Binding BindingContext.ToggleToDoItemIsFinished, Source={x:Reference Name=ToDoItemsView}}"
+                                    CommandParameter="{Binding .}"
+                                    FontSize="20"
+                                    HorizontalOptions="Start"
+                                    Text="{Binding IsFinished, Converter={StaticResource BooleanToCheckedIconConverter}}"
+                                    TextColor="#2196f3"
+                                    WidthRequest="50" />
+                                <Label
+                                    HorizontalOptions="StartAndExpand"
+                                    Text="{Binding Text}"
+                                    VerticalTextAlignment="Center" />
+                                <Label Text="{Binding CreatedDateTime, Converter={StaticResource CreatedDateTimeConverter}}" />
+                                <iconize:IconButton
+                                    BackgroundColor="Transparent"
+                                    Command="{Binding BindingContext.DeleteToDoItem, Source={x:Reference Name=ToDoItemsView}}"
+                                    CommandParameter="{Binding .}"
+                                    FontSize="20"
+                                    HorizontalOptions="Start"
+                                    Text="fa-trash-o"
+                                    TextColor="Gray"
+                                    WidthRequest="50" />
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <StackLayout Orientation="Horizontal">
-                <Label Text="Load all?" VerticalTextAlignment="Center" VerticalOptions="StartAndExpand" />
-                <Switch x:Name="ShowAllSwitch" IsToggled="{Binding LoadAll}" >
+            <StackLayout CompressedLayout.IsHeadless="False" Orientation="Horizontal">
+                <Label
+                    Text="Load all?"
+                    VerticalOptions="StartAndExpand"
+                    VerticalTextAlignment="Center" />
+                <Switch x:Name="ShowAllSwitch" IsToggled="{Binding LoadAll}">
                     <Switch.Behaviors>
-                        <b:EventToCommandBehavior EventName="Toggled" Command="{Binding LoadToDoItems}"/>
+                        <b:EventToCommandBehavior Command="{Binding LoadToDoItems}" EventName="Toggled" />
                     </Switch.Behaviors>
                 </Switch>
             </StackLayout>

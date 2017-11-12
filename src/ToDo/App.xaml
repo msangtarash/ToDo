@@ -1,29 +1,45 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<prism:PrismApplication xmlns="http://xamarin.com/schemas/2014/forms"
-                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                        xmlns:prism="clr-namespace:Prism.Autofac;assembly=Prism.Autofac.Forms"
-                        xmlns:sys="clr-namespace:System;assembly=mscorlib"
-                        xmlns:iconize="clr-namespace:FormsPlugin.Iconize;assembly=FormsPlugin.Iconize"
-                        xmlns:converters="clr-namespace:ToDo.ViewModels.Converters"
-                        xmlns:effects="clr-namespace:ToDo.Effects"
-                        x:Class="ToDo.App">
+<prism:PrismApplication
+    x:Class="ToDo.App"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:ToDo.ViewModels.Converters"
+    xmlns:effects="clr-namespace:ToDo.Effects"
+    xmlns:iconize="clr-namespace:FormsPlugin.Iconize;assembly=FormsPlugin.Iconize"
+    xmlns:prism="clr-namespace:Prism.Autofac;assembly=Prism.Autofac.Forms"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib">
 
     <prism:PrismApplication.Resources>
         <ResourceDictionary>
             <sys:Boolean x:Key="True">True</sys:Boolean>
             <sys:Boolean x:Key="False">False</sys:Boolean>
             <converters:BooleanConverter x:Key="BooleanConverter" />
-            <converters:BooleanToCheckedIconConverter x:Key="BooleanToCheckedIconConverter"/>
-            <converters:CreatedDateTimeConverter x:Key="CreatedDateTimeConverter"/>
+            <converters:BooleanToCheckedIconConverter x:Key="BooleanToCheckedIconConverter" />
+            <converters:CreatedDateTimeConverter x:Key="CreatedDateTimeConverter" />
             <Style TargetType="Entry">
                 <Setter Property="effects:HideEntryUnderlineEffect.HideUnderline">
-                    <OnPlatform x:TypeArguments="x:Boolean" Android="True" Default="False" />
+                    <OnPlatform
+                        x:TypeArguments="x:Boolean"
+                        Android="True"
+                        Default="False" />
                 </Setter>
             </Style>
             <Style TargetType="iconize:IconButton">
                 <Setter Property="effects:RemoveIconButtonShadowEffect.RemoveIconButtonShadow">
-                    <OnPlatform x:TypeArguments="x:Boolean" Android="True" Default="False" />
+                    <OnPlatform
+                        x:TypeArguments="x:Boolean"
+                        Android="True"
+                        Default="False" />
                 </Setter>
+            </Style>
+            <Style TargetType="Grid">
+                <Setter Property="CompressedLayout.IsHeadless" Value="True" />
+            </Style>
+            <Style TargetType="StackLayout">
+                <Setter Property="CompressedLayout.IsHeadless" Value="True" />
+            </Style>
+            <Style TargetType="ContentPage">
+                <Setter Property="CompressedLayout.IsHeadless" Value="True" />
             </Style>
         </ResourceDictionary>
     </prism:PrismApplication.Resources>

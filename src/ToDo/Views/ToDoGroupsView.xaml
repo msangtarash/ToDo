@@ -1,50 +1,78 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
-                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                  x:Class="ToDo.Views.ToDoGroupsView"
-                  xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
-                  xmlns:iconize="clr-namespace:FormsPlugin.Iconize;assembly=FormsPlugin.Iconize"
-                  xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
-                  xmlns:views="clr-namespace:ToDo.Views"
-                  Title="To do groups" x:Name="ToDoGroupsView">
+<MasterDetailPage
+    x:Class="ToDo.Views.ToDoGroupsView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
+    xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
+    xmlns:iconize="clr-namespace:FormsPlugin.Iconize;assembly=FormsPlugin.Iconize"
+    xmlns:views="clr-namespace:ToDo.Views"
+    x:Name="ToDoGroupsView"
+    Title="To do groups">
     <MasterDetailPage.Master>
-        <ContentPage Title="MyMaster">
+        <ContentPage Title="To do">
             <ContentPage.Behaviors>
-                <b:EventToCommandBehavior EventName="Appearing" Command="{Binding LoadToDoGroups}" />
+                <b:EventToCommandBehavior Command="{Binding LoadToDoGroups}" EventName="Appearing" />
             </ContentPage.Behaviors>
             <ContentPage.Content>
-                <StackLayout Padding="5" CompressedLayout.IsHeadless="True">
-                    <StackLayout Orientation="Horizontal" Margin="5" CompressedLayout.IsHeadless="True">
-                        <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" CompressedLayout.IsHeadless="True">
-                            <controls:CircleImage Source="WallPaper.jpg" Aspect="AspectFill" WidthRequest="35" HeightRequest="35"/>
-                            <Label Text="Marzie" VerticalOptions="CenterAndExpand" FontSize="20"/>
+                <StackLayout Padding="5">
+                    <StackLayout Margin="5" Orientation="Horizontal">
+                        <StackLayout HorizontalOptions="StartAndExpand" Orientation="Horizontal">
+                            <controls:CircleImage
+                                Aspect="AspectFill"
+                                HeightRequest="35"
+                                Source="WallPaper.jpg"
+                                WidthRequest="35" />
+                            <Label
+                                FontSize="20"
+                                Text="Marzie"
+                                VerticalOptions="CenterAndExpand" />
                         </StackLayout>
-                        <iconize:IconButton Text="fa-search" BackgroundColor="Transparent" Command="{Binding OpenSearchView}" HorizontalOptions="End" TextColor="Gray" FontSize="25" />
+                        <iconize:IconButton
+                            BackgroundColor="Transparent"
+                            Command="{Binding OpenSearchView}"
+                            FontSize="25"
+                            HorizontalOptions="End"
+                            Text="fa-search"
+                            TextColor="Gray" />
                     </StackLayout>
-                    <BoxView HeightRequest="1" Color="LightGray"/>
-                    <ListView ItemsSource="{Binding ToDoGroups}" Margin="5" SeparatorVisibility="None">
+                    <BoxView HeightRequest="1" Color="LightGray" />
+                    <ListView
+                        Margin="5"
+                        ItemsSource="{Binding ToDoGroups}"
+                        SeparatorVisibility="None">
                         <x:Arguments>
                             <ListViewCachingStrategy>RecycleElementAndDataTemplate</ListViewCachingStrategy>
                         </x:Arguments>
                         <ListView.Behaviors>
-                            <b:EventToCommandBehavior EventName="ItemTapped" EventArgsParameterPath="Item" Command="{Binding OpenToDoItems}" />
+                            <b:EventToCommandBehavior
+                                Command="{Binding OpenToDoItems}"
+                                EventArgsParameterPath="Item"
+                                EventName="ItemTapped" />
                         </ListView.Behaviors>
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <ViewCell>
-                                    <ViewCell.ContextActions>
-                                        <MenuItem Command="{Binding BindingContext.DeleteToDoGroup, Source={x:Reference Name=ToDoGroupsView}}" CommandParameter="{Binding .}" Text="Delete" />
-                                    </ViewCell.ContextActions>
-                                    <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" CompressedLayout.IsHeadless="True">
-                                        <Label Text="{Binding Name}" HorizontalOptions="FillAndExpand" Margin="10" />
-                                    </StackLayout>
-                                </ViewCell>
+                                <TextCell Text="{Binding Name}">
+                                    <TextCell.ContextActions>
+                                        <MenuItem
+                                            Command="{Binding BindingContext.DeleteToDoGroup, Source={x:Reference Name=ToDoGroupsView}}"
+                                            CommandParameter="{Binding .}"
+                                            Text="Delete" />
+                                    </TextCell.ContextActions>
+                                </TextCell>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
-                    <StackLayout Orientation="Horizontal" CompressedLayout.IsHeadless="True">
-                        <iconize:IconButton Text="fa-plus-circle" BackgroundColor="Transparent" Command="{Binding AddToDoGroup}"  HorizontalOptions="Start" TextColor="Gray" FontSize="25" WidthRequest="50" />
-                        <Entry Text="{Binding NewToDoGroupName}"  Placeholder="New to do group name" />
+                    <StackLayout Orientation="Horizontal">
+                        <iconize:IconButton
+                            BackgroundColor="Transparent"
+                            Command="{Binding AddToDoGroup}"
+                            FontSize="25"
+                            HorizontalOptions="Start"
+                            Text="fa-plus-circle"
+                            TextColor="Gray"
+                            WidthRequest="50" />
+                        <Entry Placeholder="New to do group name" Text="{Binding NewToDoGroupName}" />
                     </StackLayout>
                 </StackLayout>
             </ContentPage.Content>
