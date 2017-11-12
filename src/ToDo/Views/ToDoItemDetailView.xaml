@@ -4,7 +4,7 @@
              x:Class="ToDo.Views.ToDoItemDetailView"
              Title="{Binding ToDoItemName}">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout CompressedLayout.IsHeadless="True">
             <Label Text=""
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />

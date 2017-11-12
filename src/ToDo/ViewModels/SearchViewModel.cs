@@ -13,7 +13,7 @@ namespace ToDo.ViewModels
 
         public SearchViewModel(ToDoDbContext dbContext)
         {
-            dbContext = _dbContext;
+            _dbContext = dbContext;
         }
 
         public virtual void Destroy()

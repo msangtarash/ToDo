@@ -43,13 +43,6 @@ namespace ToDo.ViewModels
             set => SetProperty(ref _NewToDoGroupName, value);
         }
 
-        private string _CountToDoItems;
-        public virtual string CountToDoItems
-        {
-            get => _CountToDoItems;
-            set => SetProperty(ref _CountToDoItems, value);
-        }
-
         public ToDoGroupsViewModel(INavigationService navigationService, ToDoDbContext dbContext)
         {
             _navigationService = navigationService;
@@ -126,7 +119,7 @@ namespace ToDo.ViewModels
 
             OpenSearchView = new DelegateCommand(async () =>
             {
-                await navigationService.NavigateAsync("Search");
+                await navigationService.NavigateAsync("Nav/Search");
             });
         }
         public virtual void Destroy()

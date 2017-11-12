@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ToDo.Views.SearchView">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout CompressedLayout.IsHeadless="True">
             <SearchBar Placeholder="Search"/>
             <BoxView HeightRequest="1" Color="Gray"/>
         </StackLayout>
