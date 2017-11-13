@@ -3,17 +3,17 @@ using Xamarin.Forms;
 
 namespace ToDo.Effects
 {
-    public class HideEntryUnderlineEffect : RoutingEffect
+    public class HideUnderlineEffect : RoutingEffect
     {
-        public HideEntryUnderlineEffect()
-            : base($"ToDo.{nameof(HideEntryUnderlineEffect)}")
+        public HideUnderlineEffect()
+            : base($"ToDo.{nameof(HideUnderlineEffect)}")
         {
         }
 
         public static readonly BindableProperty HideUnderlineProperty = BindableProperty.CreateAttached(
                 propertyName: "HideUnderline",
                 returnType: typeof(bool?),
-                declaringType: typeof(Entry),
+                declaringType: typeof(Element),
                 defaultValue: null,
                 propertyChanged: OnHideUnderlineChanged);
 
@@ -26,16 +26,16 @@ namespace ToDo.Effects
         {
             view.SetValue(HideUnderlineProperty, newValue);
 
-            Entry entry = (Entry)view;
+            Element element = (Element)view;
 
             if (((bool)newValue) == true)
-                entry.Effects.Add(new HideEntryUnderlineEffect());
+                element.Effects.Add(new HideUnderlineEffect());
             else
             {
-                HideEntryUnderlineEffect effect = entry.Effects.OfType<HideEntryUnderlineEffect>().FirstOrDefault();
+                HideUnderlineEffect effect = element.Effects.OfType<HideUnderlineEffect>().FirstOrDefault();
 
                 if (effect != null)
-                    entry.Effects.Remove(effect);
+                    element.Effects.Remove(effect);
             }
         }
     }

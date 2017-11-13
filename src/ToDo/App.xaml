@@ -17,7 +17,15 @@
             <converters:BooleanToCheckedIconConverter x:Key="BooleanToCheckedIconConverter" />
             <converters:CreatedDateTimeConverter x:Key="CreatedDateTimeConverter" />
             <Style TargetType="Entry">
-                <Setter Property="effects:HideEntryUnderlineEffect.HideUnderline">
+                <Setter Property="effects:HideUnderlineEffect.HideUnderline">
+                    <OnPlatform
+                        x:TypeArguments="x:Boolean"
+                        Android="True"
+                        Default="False" />
+                </Setter>
+            </Style>
+            <Style TargetType="SearchBar">
+                <Setter Property="effects:HideUnderlineEffect.HideUnderline">
                     <OnPlatform
                         x:TypeArguments="x:Boolean"
                         Android="True"

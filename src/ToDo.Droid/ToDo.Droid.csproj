@@ -255,7 +255,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Effects\HideEntryUnderlineEffect.cs" />
+    <Compile Include="Effects\HideUnderlineEffect.cs" />
     <Compile Include="Effects\RemoveIconButtonShadowEffect.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
