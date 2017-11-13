@@ -19,7 +19,7 @@ namespace ToDo.ViewModels
         public DelegateCommand LoadToDoGroups { get; set; }
         public DelegateCommand AddToDoGroup { get; set; }
         public DelegateCommand<ToDoGroup> DeleteToDoGroup { get; set; }
-        public DelegateCommand OpenSearchView { get; set; }
+        public DelegateCommand OpenSearch { get; set; }
         public DelegateCommand<ToDoGroup> OpenToDoItems { get; set; }
 
         private ObservableCollection<ToDoGroup> _ToDoGroups;
@@ -43,13 +43,6 @@ namespace ToDo.ViewModels
             set => SetProperty(ref _NewToDoGroupName, value);
         }
 
-        private string _CountToDoItems;
-        public virtual string CountToDoItems
-        {
-            get => _CountToDoItems;
-            set => SetProperty(ref _CountToDoItems, value);
-        }
-
         public ToDoGroupsViewModel(INavigationService navigationService, ToDoDbContext dbContext)
         {
             _navigationService = navigationService;
@@ -64,11 +57,22 @@ namespace ToDo.ViewModels
 
                     await _dbContext.Database.EnsureCreatedAsync();
 
-                    await _dbContext.ToDoGroups.LoadAsync();
+                    ToDoGroup[] toDoGroups = await _dbContext.ToDoGroups
+                        .Select(tdG => new ToDoGroup
+                        {
+                            Id = tdG.Id,
+                            Name = tdG.Name,
+                            CreatedDateTime = tdG.CreatedDateTime,
+                            ActiveToDoItemsCount = tdG.ToDoItems.Count(toDoItem => toDoItem.IsFinished == false)
+                        })
+                        .ToArrayAsync();
 
-                    // var TodoGroups = await _dbContext.ToDoGroups.Select(toDoGroup => new { toDoGroup.Id, toDoGroup.Name, ToDoItemsCount = toDoGroup.ToDoItems.Count() }).ToListAsync();
+                    foreach (ToDoGroup toDoGroup in toDoGroups)
+                    {
+                        _dbContext.Attach(toDoGroup);
+                    }
 
-                    ToDoGroups = new ObservableCollection<ToDoGroup>(_dbContext.ToDoGroups.Local);
+                    ToDoGroups = _dbContext.ToDoGroups.Local.ToObservableCollection();
                 }
                 finally
                 {
@@ -88,8 +92,6 @@ namespace ToDo.ViewModels
 
                     await _dbContext.SaveChangesAsync();
 
-                    ToDoGroups.Add(toDoGroup);
-
                     NewToDoGroupName = "";
                 }
                 finally
@@ -106,9 +108,8 @@ namespace ToDo.ViewModels
                 try
                 {
                     IsBusy = true;
-                    _dbContext.Entry(toDoGroup).State = EntityState.Deleted;
+                    _dbContext.Remove(toDoGroup);
                     await _dbContext.SaveChangesAsync();
-                    ToDoGroups.Remove(toDoGroup);
                 }
                 finally
                 {
@@ -124,9 +125,9 @@ namespace ToDo.ViewModels
                 }.ToNavParams());
             });
 
-            OpenSearchView = new DelegateCommand(async () =>
+            OpenSearch = new DelegateCommand(async () =>
             {
-                await navigationService.NavigateAsync("Search");
+                await navigationService.NavigateAsync("Nav/Search");
             });
         }
         public virtual void Destroy()

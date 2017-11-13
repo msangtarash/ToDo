@@ -43,6 +43,7 @@
     <EmbedAssembliesIntoApk>false</EmbedAssembliesIntoApk>
     <AndroidLinkSkip>
     </AndroidLinkSkip>
+    <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -52,7 +53,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
-    <AndroidLinkMode>Full</AndroidLinkMode>
+    <AndroidLinkMode>SdkOnly</AndroidLinkMode>
     <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
     <BundleAssemblies>true</BundleAssemblies>
     <EnableProguard>true</EnableProguard>
@@ -60,8 +61,7 @@
     <EnableLLVM>false</EnableLLVM>
     <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
     <DebugSymbols>false</DebugSymbols>
-    <AndroidSupportedAbis>
-    </AndroidSupportedAbis>
+    <AndroidSupportedAbis>x86_64</AndroidSupportedAbis>
     <AndroidHttpClientHandlerType>
     </AndroidHttpClientHandlerType>
   </PropertyGroup>
@@ -255,9 +255,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Effects\HideEntryUnderlineEffect.cs" />
+    <Compile Include="Effects\RemoveIconButtonShadowEffect.cs" />
     <Compile Include="MainActivity.cs" />
-    <Compile Include="Renderes\ToDoEntryRenderer.cs" />
-    <Compile Include="Renderes\ToDoIconButtonRenderer.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

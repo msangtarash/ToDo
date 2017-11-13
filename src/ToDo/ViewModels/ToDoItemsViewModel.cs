@@ -74,7 +74,6 @@ namespace ToDo.ViewModels
             set => SetProperty(ref _CurrentDate, value);
         }
 
-
         private IQueryable<ToDoItem> GetToDoItemsQuery(IQueryable<ToDoItem> toDoItemsBaseQuery)
         {
             toDoItemsBaseQuery = _toDoGroupId.HasValue ? toDoItemsBaseQuery.Where(toDo => toDo.GroupId == _toDoGroupId) : toDoItemsBaseQuery.Where(toDo => toDo.GroupId == null);
@@ -153,7 +152,6 @@ namespace ToDo.ViewModels
                     if (LoadAll == false && toDoItem.IsFinished == true)
                     {
                         ToDoItems.Remove(toDoItem);
-
                     }
                 }
                 catch
