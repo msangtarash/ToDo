@@ -18,6 +18,7 @@
     <PackageReference Include="LiveXAML" Version="2.0.8-beta" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.0.0" />
     <PackageReference Include="Prism.Autofac.Forms" Version="7.0.0.168-pre" />
+    <PackageReference Include="System.Reactive.Linq" Version="3.1.1" />
     <PackageReference Include="Xam.FormsPlugin.Iconize" Version="1.0.10" />
     <PackageReference Include="Xam.Plugin.Iconize" Version="1.0.10" />
     <PackageReference Include="Xam.Plugins.Forms.ImageCircle" Version="1.8.1" />

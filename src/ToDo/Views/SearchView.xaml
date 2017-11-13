@@ -2,11 +2,24 @@
 <ContentPage
     x:Class="ToDo.Views.SearchView"
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms">
     <ContentPage.Content>
         <StackLayout>
-            <SearchBar Placeholder="Search" />
+            <SearchBar Placeholder="Search" Text="{Binding SearchText}" />
             <BoxView HeightRequest="1" Color="Gray" />
+            <ListView ItemsSource="{Binding ToDoItems}">
+                <x:Arguments>
+                    <ListViewCachingStrategy>RecycleElementAndDataTemplate</ListViewCachingStrategy>
+                </x:Arguments>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Label Text="{Binding Text}" />
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
