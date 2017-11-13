@@ -30,7 +30,7 @@
                         </StackLayout>
                         <iconize:IconButton
                             BackgroundColor="Transparent"
-                            Command="{Binding OpenSearchView}"
+                            Command="{Binding OpenSearch}"
                             FontSize="25"
                             HorizontalOptions="End"
                             Text="fa-search"

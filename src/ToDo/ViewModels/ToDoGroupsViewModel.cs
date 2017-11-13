@@ -19,7 +19,7 @@ namespace ToDo.ViewModels
         public DelegateCommand LoadToDoGroups { get; set; }
         public DelegateCommand AddToDoGroup { get; set; }
         public DelegateCommand<ToDoGroup> DeleteToDoGroup { get; set; }
-        public DelegateCommand OpenSearchView { get; set; }
+        public DelegateCommand OpenSearch { get; set; }
         public DelegateCommand<ToDoGroup> OpenToDoItems { get; set; }
 
         private ObservableCollection<ToDoGroup> _ToDoGroups;
@@ -57,7 +57,7 @@ namespace ToDo.ViewModels
 
                     await _dbContext.Database.EnsureCreatedAsync();
 
-                    foreach (ToDoGroup toDoGroup in await _dbContext.ToDoGroups
+                    ToDoGroup[] toDoGroups = await _dbContext.ToDoGroups
                         .Select(tdG => new ToDoGroup
                         {
                             Id = tdG.Id,
@@ -65,7 +65,9 @@ namespace ToDo.ViewModels
                             CreatedDateTime = tdG.CreatedDateTime,
                             ActiveToDoItemsCount = tdG.ToDoItems.Count(toDoItem => toDoItem.IsFinished == false)
                         })
-                        .ToArrayAsync())
+                        .ToArrayAsync();
+
+                    foreach (ToDoGroup toDoGroup in toDoGroups)
                     {
                         _dbContext.Attach(toDoGroup);
                     }
@@ -123,7 +125,7 @@ namespace ToDo.ViewModels
                 }.ToNavParams());
             });
 
-            OpenSearchView = new DelegateCommand(async () =>
+            OpenSearch = new DelegateCommand(async () =>
             {
                 await navigationService.NavigateAsync("Nav/Search");
             });
