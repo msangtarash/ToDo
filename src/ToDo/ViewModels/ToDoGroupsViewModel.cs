@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using ToDo.DataAccess;
 using ToDo.Model;
+using Xamarin.Forms;
 
 namespace ToDo.ViewModels
 {
@@ -48,6 +49,17 @@ namespace ToDo.ViewModels
             _navigationService = navigationService;
 
             _dbContext = dbContext;
+
+            MessagingCenter.Subscribe<ToDoItem>(this, "ToDoItemAdded", (toDoItem) =>
+            {
+                if (toDoItem.GroupId != null)
+                    ToDoGroups.Single(toDoGroup => toDoGroup.Id == toDoItem.GroupId).ActiveToDoItemsCount += 1;
+            });
+            MessagingCenter.Subscribe<ToDoItem>(this, "ToDoItemDeleted", (toDoItem) =>
+            {
+                if (toDoItem.GroupId != null)
+                    ToDoGroups.Single(toDoGroup => toDoGroup.Id == toDoItem.GroupId).ActiveToDoItemsCount -= 1;
+            });
 
             LoadToDoGroups = new DelegateCommand(async () =>
             {
@@ -132,6 +144,8 @@ namespace ToDo.ViewModels
         }
         public virtual void Destroy()
         {
+            MessagingCenter.Unsubscribe<ToDoItem>(this, "NewToDoItemAdded");
+
             _dbContext.Dispose();
         }
     }

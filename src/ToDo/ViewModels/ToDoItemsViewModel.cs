@@ -9,6 +9,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using ToDo.DataAccess;
 using ToDo.Model;
+using Xamarin.Forms;
 
 namespace ToDo.ViewModels
 {
@@ -182,6 +183,8 @@ namespace ToDo.ViewModels
 
                     ToDoItems.Add(toDoItem);
 
+                    MessagingCenter.Send(toDoItem, "ToDoItemAdded");
+
                     NewToDoText = "";
                 }
                 finally
@@ -200,6 +203,7 @@ namespace ToDo.ViewModels
                     IsBusy = true;
                     _dbContext.Remove(toDoItem);
                     await _dbContext.SaveChangesAsync();
+                    MessagingCenter.Send(toDoItem ,"ToDoItemDeleted");
                     ToDoItems.Remove(toDoItem);
                 }
                 finally
