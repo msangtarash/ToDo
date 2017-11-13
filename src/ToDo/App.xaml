@@ -49,6 +49,9 @@
             <Style TargetType="ContentPage">
                 <Setter Property="CompressedLayout.IsHeadless" Value="True" />
             </Style>
+            <Style TargetType="ListView">
+                <Setter Property="SeparatorVisibility" Value="None" />
+            </Style>
         </ResourceDictionary>
     </prism:PrismApplication.Resources>
 

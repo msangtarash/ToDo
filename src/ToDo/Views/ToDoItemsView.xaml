@@ -48,7 +48,7 @@
                     Placeholder="New to do item text..."
                     Text="{Binding NewToDoText}" />
             </StackLayout>
-            <ListView ItemsSource="{Binding ToDoItems}" SeparatorVisibility="None">
+            <ListView ItemsSource="{Binding ToDoItems}">
                 <x:Arguments>
                     <ListViewCachingStrategy>RecycleElementAndDataTemplate</ListViewCachingStrategy>
                 </x:Arguments>

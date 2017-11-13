@@ -37,10 +37,7 @@
                             TextColor="Gray" />
                     </StackLayout>
                     <BoxView HeightRequest="1" Color="LightGray" />
-                    <ListView
-                        Margin="5"
-                        ItemsSource="{Binding ToDoGroups}"
-                        SeparatorVisibility="None">
+                    <ListView Margin="5" ItemsSource="{Binding ToDoGroups}">
                         <x:Arguments>
                             <ListViewCachingStrategy>RecycleElementAndDataTemplate</ListViewCachingStrategy>
                         </x:Arguments>
@@ -59,9 +56,12 @@
                                             CommandParameter="{Binding .}"
                                             Text="Delete" />
                                     </ViewCell.ContextActions>
-                                    <StackLayout>
-                                        <Label Text="{Binding Name}" />
-                                        <Label Text="{Binding ActiveToDoItemsCount}" />
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="{Binding Name}" VerticalTextAlignment="Center" />
+                                        <Label
+                                            HorizontalOptions="EndAndExpand"
+                                            Text="{Binding ActiveToDoItemsCount}"
+                                            VerticalTextAlignment="Center" />
                                     </StackLayout>
                                 </ViewCell>
                             </DataTemplate>
