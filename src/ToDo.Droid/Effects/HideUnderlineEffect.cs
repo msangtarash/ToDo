@@ -17,7 +17,7 @@ namespace ToDo.Droid.Effects
                 Android.Views.View plate = Control.FindViewById(plateId);
                 plate.SetBackgroundColor(Android.Graphics.Color.Transparent);
             }
-            else if (Element is Entry)
+            else/* if (Element is Entry)*/
             {
                 Control.Background = null;
             }
