@@ -24,6 +24,14 @@
                         Default="False" />
                 </Setter>
             </Style>
+            <Style TargetType="Editor">
+                <Setter Property="effects:HideUnderlineEffect.HideUnderline">
+                    <OnPlatform
+                        x:TypeArguments="x:Boolean"
+                        Android="True"
+                        Default="False" />
+                </Setter>
+            </Style>
             <Style TargetType="SearchBar">
                 <Setter Property="effects:HideUnderlineEffect.HideUnderline">
                     <OnPlatform

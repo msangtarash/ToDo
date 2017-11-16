@@ -3,11 +3,94 @@
     x:Class="ToDo.Views.ToDoItemDetailView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="{Binding ToDoItemName}">
+    xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
+    xmlns:iconize="clr-namespace:FormsPlugin.Iconize;assembly=FormsPlugin.Iconize"
+    Title="{Binding Text}"
+    Padding="10">
     <ContentPage.Content>
-        <Label
-            HorizontalOptions="CenterAndExpand"
-            Text=""
-            VerticalOptions="CenterAndExpand" />
+        <StackLayout BackgroundColor="Beige">
+            <Frame
+                Padding="10,5,5,5"
+                BackgroundColor="White"
+                HeightRequest="40">
+                <StackLayout CompressedLayout.IsHeadless="False" Orientation="Horizontal">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding OnTapGestureRecognizerTapped}" NumberOfTapsRequired="1" />
+                    </StackLayout.GestureRecognizers>
+                    <iconize:IconLabel
+                        BackgroundColor="Transparent"
+                        FontSize="25"
+                        Text="fa-sun-o"
+                        VerticalTextAlignment="Center"
+                        WidthRequest="30" />
+                    <Label
+                        FontSize="15"
+                        HorizontalOptions="Center"
+                        Text="Add To My Day"
+                        VerticalTextAlignment="Center" />
+                </StackLayout>
+            </Frame>
+            <Frame
+                Margin="0,10,0,0"
+                Padding="10,5,5,5"
+                BackgroundColor="White">
+                <StackLayout CompressedLayout.IsHeadless="False" Orientation="Vertical">
+                    <StackLayout HeightRequest="40" Orientation="Horizontal">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding OnTapGestureRecognizerTapped}" NumberOfTapsRequired="1" />
+                        </StackLayout.GestureRecognizers>
+                        <iconize:IconLabel
+                            BackgroundColor="Transparent"
+                            FontSize="25"
+                            Text="fa-clock-o"
+                            VerticalTextAlignment="Center"
+                            WidthRequest="30" />
+                        <Label
+                            FontSize="15"
+                            HorizontalOptions="Center"
+                            Text="Remind Me"
+                            VerticalTextAlignment="Center" />
+                    </StackLayout>
+                    <BoxView
+                        Margin="20,0,0,0"
+                        HeightRequest="1"
+                        WidthRequest="60"
+                        Color="LightGray" />
+                    <StackLayout HeightRequest="40" Orientation="Horizontal">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding OnTapGestureRecognizerTapped}" NumberOfTapsRequired="1" />
+                        </StackLayout.GestureRecognizers>
+                        <iconize:IconLabel
+                            BackgroundColor="Transparent"
+                            FontSize="25"
+                            Text="fa-calendar-minus-o"
+                            VerticalTextAlignment="Center"
+                            WidthRequest="30" />
+                        <Label
+                            FontSize="15"
+                            HorizontalOptions="Center"
+                            Text="Add Due Date"
+                            VerticalTextAlignment="Center" />
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+            <Frame>
+                <Editor
+                    HeightRequest="100"
+                    Text="Add a note"
+                    TextColor="LightGray" />
+            </Frame>
+            <StackLayout CompressedLayout.IsHeadless="False" Orientation="Horizontal" VerticalOptions="EndAndExpand">
+                    <Label
+                        HorizontalOptions="CenterAndExpand"
+                        Text="Completed"
+                        VerticalTextAlignment="Center" />
+                    <iconize:IconButton
+                        Command="DeleteToDoItemDetail"
+                        HorizontalOptions="End"
+                        Text="fa-trash-o" />
+                </StackLayout>
+
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>
