@@ -29,7 +29,6 @@
                                 VerticalOptions="CenterAndExpand" />
                         </StackLayout>
                         <iconize:IconButton
-                            BackgroundColor="Transparent"
                             Command="{Binding OpenSearch}"
                             FontSize="25"
                             HorizontalOptions="End"
@@ -69,7 +68,6 @@
                     </ListView>
                     <StackLayout Orientation="Horizontal">
                         <iconize:IconButton
-                            BackgroundColor="Transparent"
                             Command="{Binding AddToDoGroup}"
                             FontSize="25"
                             HorizontalOptions="Start"

@@ -5,7 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
     xmlns:iconize="clr-namespace:FormsPlugin.Iconize;assembly=FormsPlugin.Iconize"
-    Title="{Binding Text}"
+    Title="{Binding ToDoItem.Text}"
     Padding="10">
     <ContentPage.Content>
         <StackLayout BackgroundColor="Beige">
@@ -18,7 +18,6 @@
                         <TapGestureRecognizer Command="{Binding OnTapGestureRecognizerTapped}" NumberOfTapsRequired="1" />
                     </StackLayout.GestureRecognizers>
                     <iconize:IconLabel
-                        BackgroundColor="Transparent"
                         FontSize="25"
                         Text="fa-sun-o"
                         VerticalTextAlignment="Center"
@@ -40,7 +39,6 @@
                             <TapGestureRecognizer Command="{Binding OnTapGestureRecognizerTapped}" NumberOfTapsRequired="1" />
                         </StackLayout.GestureRecognizers>
                         <iconize:IconLabel
-                            BackgroundColor="Transparent"
                             FontSize="25"
                             Text="fa-clock-o"
                             VerticalTextAlignment="Center"
@@ -61,7 +59,6 @@
                             <TapGestureRecognizer Command="{Binding OnTapGestureRecognizerTapped}" NumberOfTapsRequired="1" />
                         </StackLayout.GestureRecognizers>
                         <iconize:IconLabel
-                            BackgroundColor="Transparent"
                             FontSize="25"
                             Text="fa-calendar-minus-o"
                             VerticalTextAlignment="Center"
@@ -80,17 +77,22 @@
                     Text="Add a note"
                     TextColor="LightGray" />
             </Frame>
-            <StackLayout CompressedLayout.IsHeadless="False" Orientation="Horizontal" VerticalOptions="EndAndExpand">
-                    <Label
-                        HorizontalOptions="CenterAndExpand"
-                        Text="Completed"
-                        VerticalTextAlignment="Center" />
-                    <iconize:IconButton
-                        Command="DeleteToDoItemDetail"
-                        HorizontalOptions="End"
-                        Text="fa-trash-o" />
-                </StackLayout>
-
+            <StackLayout
+                Margin="100,5,0,0"
+                Orientation="Horizontal"
+                VerticalOptions="EndAndExpand">
+                <Label
+                    FontSize="15"
+                    HorizontalOptions="CenterAndExpand"
+                    Text="{Binding ToDoItem, Converter={StaticResource CreatedAndEndedDateTimeConverter}}"
+                    VerticalTextAlignment="Center" />
+                <iconize:IconButton
+                    Command="DeleteToDoItemDetail"
+                    FontSize="20"
+                    HorizontalOptions="End"
+                    Text="fa-trash-o"
+                    WidthRequest="40" />
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
