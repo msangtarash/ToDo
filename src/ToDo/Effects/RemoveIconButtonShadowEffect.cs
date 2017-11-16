@@ -24,11 +24,9 @@ namespace ToDo.Effects
             return (bool?)view.GetValue(RemoveIconButtonShadowProperty);
         }
 
-        public static async void OnRemoveIconButtonShadowChanged(BindableObject view, object oldValue, object newValue)
+        public static void OnRemoveIconButtonShadowChanged(BindableObject view, object oldValue, object newValue)
         {
             view.SetValue(RemoveIconButtonShadowProperty, newValue);
-
-            await Task.Yield();
 
             IconButton iconButton = (IconButton)view;
 
