@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace ToDo.Effects
@@ -22,13 +23,17 @@ namespace ToDo.Effects
             return (bool?)view.GetValue(HideUnderlineProperty);
         }
 
-        public static void OnHideUnderlineChanged(BindableObject view, object oldValue, object newValue)
+        public static async void OnHideUnderlineChanged(BindableObject view, object oldValue, object newValue)
         {
             view.SetValue(HideUnderlineProperty, newValue);
 
+            await Task.Yield();
+
             Element element = (Element)view;
 
-            if (((bool)newValue) == true)
+            bool hideUnderlineValue = (bool)view.GetValue(HideUnderlineProperty);
+
+            if (hideUnderlineValue == true)
                 element.Effects.Add(new HideUnderlineEffect());
             else
             {

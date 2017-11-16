@@ -1,5 +1,6 @@
 ﻿using FormsPlugin.Iconize;
 using System.Linq;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace ToDo.Effects
@@ -23,13 +24,17 @@ namespace ToDo.Effects
             return (bool?)view.GetValue(RemoveIconButtonShadowProperty);
         }
 
-        public static void OnRemoveIconButtonShadowChanged(BindableObject view, object oldValue, object newValue)
+        public static async void OnRemoveIconButtonShadowChanged(BindableObject view, object oldValue, object newValue)
         {
             view.SetValue(RemoveIconButtonShadowProperty, newValue);
 
+            await Task.Yield();
+
             IconButton iconButton = (IconButton)view;
 
-            if (((bool)newValue) == true)
+            bool removeIconButtonShadow = (bool)view.GetValue(RemoveIconButtonShadowProperty);
+
+            if (removeIconButtonShadow == true)
                 iconButton.Effects.Add(new RemoveIconButtonShadowEffect());
             else
             {
