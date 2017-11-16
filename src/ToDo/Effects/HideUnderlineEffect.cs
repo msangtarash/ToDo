@@ -23,11 +23,9 @@ namespace ToDo.Effects
             return (bool?)view.GetValue(HideUnderlineProperty);
         }
 
-        public static async void OnHideUnderlineChanged(BindableObject view, object oldValue, object newValue)
+        public static void OnHideUnderlineChanged(BindableObject view, object oldValue, object newValue)
         {
             view.SetValue(HideUnderlineProperty, newValue);
-
-            await Task.Yield();
 
             Element element = (Element)view;
 
