@@ -8,5 +8,5 @@ namespace ToDo.Views
 		{
             InitializeComponent ();
 		}
-	}
+    }
 }

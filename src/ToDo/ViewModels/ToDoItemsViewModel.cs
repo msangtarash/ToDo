@@ -68,13 +68,6 @@ namespace ToDo.ViewModels
             set => SetProperty(ref _LoadAll, value);
         }
 
-        private string _CurrentDate;
-        public virtual string CurrentDate
-        {
-            get => _CurrentDate;
-            set => SetProperty(ref _CurrentDate, value);
-        }
-
         private IQueryable<ToDoItem> GetToDoItemsQuery(IQueryable<ToDoItem> toDoItemsBaseQuery)
         {
             toDoItemsBaseQuery = _toDoGroupId.HasValue ? toDoItemsBaseQuery.Where(toDo => toDo.GroupId == _toDoGroupId) : toDoItemsBaseQuery.Where(toDo => toDo.GroupId == null);
@@ -117,8 +110,6 @@ namespace ToDo.ViewModels
 
             _navigationService = navigationService;
 
-            CurrentDate = DateTime.UtcNow.ToShortDateString();
-
             LoadToDoItems = new DelegateCommand(async () =>
             {
                 try
@@ -147,6 +138,11 @@ namespace ToDo.ViewModels
                     IsBusy = true;
 
                     toDoItem.IsFinished = !toDoItem.IsFinished;
+
+                    if (toDoItem.IsFinished == true)
+                    {
+                        toDoItem.EndedDateTime = DateTimeOffset.UtcNow;
+                    }
 
                     await _dbContext.SaveChangesAsync();
 

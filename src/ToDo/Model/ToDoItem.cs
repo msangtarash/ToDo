@@ -20,6 +20,14 @@ namespace ToDo.Model
             set => SetProperty(ref _CreatedDateTime, value);
         }
 
+        private DateTimeOffset _EndedDateTime;
+
+        public virtual DateTimeOffset EndedDateTime
+        {
+            get => _EndedDateTime;
+            set => SetProperty(ref _EndedDateTime, value);
+        }
+
         private string _Text;
         public virtual string Text
         {

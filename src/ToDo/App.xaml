@@ -6,16 +6,15 @@
     xmlns:converters="clr-namespace:ToDo.ViewModels.Converters"
     xmlns:effects="clr-namespace:ToDo.Effects"
     xmlns:iconize="clr-namespace:FormsPlugin.Iconize;assembly=FormsPlugin.Iconize"
-    xmlns:prism="clr-namespace:Prism.Autofac;assembly=Prism.Autofac.Forms"
-    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    xmlns:prism="clr-namespace:Prism.Autofac;assembly=Prism.Autofac.Forms">
 
     <prism:PrismApplication.Resources>
         <ResourceDictionary>
-            <sys:Boolean x:Key="True">True</sys:Boolean>
-            <sys:Boolean x:Key="False">False</sys:Boolean>
+            <x:Boolean x:Key="True">True</x:Boolean>
+            <x:Boolean x:Key="False">False</x:Boolean>
             <converters:BooleanConverter x:Key="BooleanConverter" />
             <converters:BooleanToCheckedIconConverter x:Key="BooleanToCheckedIconConverter" />
-            <converters:CreatedDateTimeConverter x:Key="CreatedDateTimeConverter" />
+            <converters:CreatedAndEndedDateTimeConverter x:Key="CreatedAndEndedDateTimeConverter" />
             <Style TargetType="Entry">
                 <Setter Property="effects:HideUnderlineEffect.HideUnderline">
                     <OnPlatform
@@ -47,6 +46,7 @@
                         Android="True"
                         Default="False" />
                 </Setter>
+                <Setter Property="BackgroundColor" Value="Transparent" />
             </Style>
             <Style TargetType="Grid">
                 <Setter Property="CompressedLayout.IsHeadless" Value="True" />

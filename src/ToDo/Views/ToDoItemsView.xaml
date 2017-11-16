@@ -25,7 +25,7 @@
                 <Label
                     Margin="20"
                     Font="25,Bold"
-                    Text="{Binding CurrentDate}"
+                    Text="{Binding CreatedDateTime}"
                     TextColor="White"
                     VerticalOptions="EndAndExpand" />
             </StackLayout>
@@ -36,7 +36,6 @@
             CompressedLayout.IsHeadless="False">
             <StackLayout Orientation="Horizontal">
                 <iconize:IconButton
-                    BackgroundColor="Transparent"
                     Command="{Binding AddToDoItem}"
                     FontSize="30"
                     HorizontalOptions="Start"
@@ -68,7 +67,6 @@
                                 </Switch.GestureRecognizers>-->
                                 </Switch>
                                 <iconize:IconButton
-                                    BackgroundColor="Transparent"
                                     Command="{Binding BindingContext.ToggleToDoItemIsFinished, Source={x:Reference Name=ToDoItemsView}}"
                                     CommandParameter="{Binding .}"
                                     FontSize="20"
@@ -80,9 +78,7 @@
                                     HorizontalOptions="StartAndExpand"
                                     Text="{Binding Text}"
                                     VerticalTextAlignment="Center" />
-                                <Label Text="{Binding CreatedDateTime, Converter={StaticResource CreatedDateTimeConverter}}" />
                                 <iconize:IconButton
-                                    BackgroundColor="Transparent"
                                     Command="{Binding BindingContext.DeleteToDoItem, Source={x:Reference Name=ToDoItemsView}}"
                                     CommandParameter="{Binding .}"
                                     FontSize="20"
