@@ -144,8 +144,8 @@ namespace ToDo.ViewModels
         }
         public virtual void Destroy()
         {
-            MessagingCenter.Unsubscribe<ToDoItem>(this, "NewToDoItemAdded");
-
+            MessagingCenter.Unsubscribe<ToDoItem>(this, "ToDoItemAdded");
+            MessagingCenter.Unsubscribe<ToDoItem>(this, "ToDoItemDeleted");
             _dbContext.Dispose();
         }
     }
