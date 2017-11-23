@@ -110,6 +110,11 @@ namespace ToDo.ViewModels
 
             _navigationService = navigationService;
 
+            MessagingCenter.Subscribe<ToDoItem>(this, "ToDoItemRemoved", async (toDoItem) =>
+            {
+                DeleteToDoItem.Execute(await _dbContext.ToDoItems.FindAsync(toDoItem.Id));
+            });
+
             LoadToDoItems = new DelegateCommand(async () =>
             {
                 try
@@ -199,7 +204,7 @@ namespace ToDo.ViewModels
                     IsBusy = true;
                     _dbContext.Remove(toDoItem);
                     await _dbContext.SaveChangesAsync();
-                    MessagingCenter.Send(toDoItem ,"ToDoItemDeleted");
+                    MessagingCenter.Send(toDoItem, "ToDoItemDeleted");
                     ToDoItems.Remove(toDoItem);
                 }
                 finally
