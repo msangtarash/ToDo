@@ -70,7 +70,7 @@ namespace ToDo.ViewModels
 
         private IQueryable<ToDoItem> GetToDoItemsQuery(IQueryable<ToDoItem> toDoItemsBaseQuery)
         {
-            toDoItemsBaseQuery = _toDoGroupId.HasValue ? toDoItemsBaseQuery.Where(toDo => toDo.GroupId == _toDoGroupId) : toDoItemsBaseQuery.Where(toDo => toDo.GroupId == null);
+            toDoItemsBaseQuery = _toDoGroupId.HasValue ? toDoItemsBaseQuery.Where(toDo => toDo.GroupId == _toDoGroupId) : toDoItemsBaseQuery.Where(toDo => toDo.ShowInMyDay == true || toDo.GroupId== null);
 
             if (LoadAll == false)
                 toDoItemsBaseQuery = toDoItemsBaseQuery.Where(toDo => toDo.IsFinished == false);
@@ -96,10 +96,10 @@ namespace ToDo.ViewModels
 
             LoadToDoItems.Execute();
 
-            GroupName = _toDoGroupId.HasValue ? (await _dbContext.ToDoGroups.FindAsync(_toDoGroupId))?.Name : "Non grouped";
+            GroupName = _toDoGroupId.HasValue ? (await _dbContext.ToDoGroups.FindAsync(_toDoGroupId))?.Name : "My day";
         }
 
-        public virtual void OnNavigatedFrom(NavigationParameters parameters)
+            public virtual void OnNavigatedFrom(NavigationParameters parameters)
         {
 
         }
